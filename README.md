@@ -1,6 +1,6 @@
 - 👋 Hi, I’m @siddhantpathakk
 - 💻 I’m interested in Machine Learning, Data Science and Artificial Intelligence
-- 🎓 I’m currently a Penultimate Year Undergraduate at Nanyang Technological University, Singapore
+- 🎓 I’m currently a Penultimate Year Undergraduate at Nanyang Technological University, Singapore. I am pursuing Computer Science with a Minor in Mathematics.
 - 📫 Feel free to contact me via email (siddhantpathak2@gmail.com)
 
 <!---
