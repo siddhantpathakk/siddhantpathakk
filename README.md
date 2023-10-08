@@ -50,7 +50,6 @@ You can click the Preview link to take a look at your changes.
 </div>
 
 <br>
-<br>
 
 
 <!--h1 without bottom border-->
