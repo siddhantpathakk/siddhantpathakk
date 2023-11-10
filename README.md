@@ -31,7 +31,7 @@ You can click the Preview link to take a look at your changes.
 <!--Intro start-->
 - 🔭 I’m a Final Year Computer Science student at Nanyang Technological University, Singapore.
 
-- 🌱 I’m currently learning **Machine Learning, Data Science and Artificial Intelligence for Finance and Scalable Applications.**
+- 🌱 I’m currently learning **Machine Learning, Data Science and Artificial Intelligence for Recommender Systems, Finance and Scalable Edge Applications.**
 
 - 📫 Feel free to reach me out **siddhantpathak2@gmail.com**
 
