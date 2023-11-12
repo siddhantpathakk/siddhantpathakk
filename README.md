@@ -30,19 +30,4 @@ You can click the Preview link to take a look at your changes.
 
 - 🏠 Also I've an interactive personal portfolio **[here](https://siddhantpathakk.github.io)**
 <!--Intro end-->
-<div id="user-content-toc">
-  <ul align="center">
-    <summary><h2 style="display: inline-block">GitHub Stats 👨🏻‍💻</h2></summary>
-  </ul>
-</div>
-<br>
-<div align="center">
-<a href="https://github.com/0xabdulkhalid/">
-  <img src="https://github-readme-stats.vercel.app/api?username=siddhantpathakk&include_all_commits=true&count_private=true&show_icons=true&text_color=D3D3D3&bg_color=0,000000,130F40" width="500"/>
-</a>
-</div>
-
-<br>
-
-----------------------------------------------------------------------
-Last updated on November, 11, 2023
+<img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
