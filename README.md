@@ -13,13 +13,6 @@ You can click the Preview link to take a look at your changes.
 </div>
 
 
-<!--- snake -->
-<div align="center">
-  <img  src="https://github.com/1999AZZAR/1999AZZAR/blob/main/resources/img/grid-snake.svg"
-       alt="snake" /></a>
-</div>
-
-
 <!--h2 without bottom border-->
 <div id="user-content-toc">
   <ul align="center">
@@ -52,18 +45,7 @@ You can click the Preview link to take a look at your changes.
 <br>
 
 
-<!--h1 without bottom border-->
-<div id="user-content-toc">
-  <ul align="center">
-    <summary><h2 style="display: inline-block">Technologies That I Know 👨🏻‍💻</h2></summary>
-  </ul>
-</div>
-<!--tech stack icons-->
-<p align="center">
-  <a href="https://skillicons.dev">
-    <img src="https://skillicons.dev/icons?i=python,r,tensorflow,pytorch,django,flask,raspberrypi,java,kotlin,ruby,c,cpp,mysql,dart,flutter,firebase,figma,github,docker,linux,aws,gcp,html,css,vscode,eclipse,idea,photoshop,illustrator,premiere,xd&perline=10" />
-  </a>
-</p>
+
 
 
 <!--profile visit count-->
