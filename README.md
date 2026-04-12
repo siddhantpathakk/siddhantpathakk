@@ -22,12 +22,9 @@ You can click the Preview link to take a look at your changes.
 
 
 <!--Intro start-->
-- 🔭 I’m a Final Year Computer Science student at Nanyang Technological University, Singapore.
+- 🌱 I’m learning **Machine Learning, Data Science and Artificial Intelligence for Recommender Systems, Finance, and Scalable Edge Applications.**
 
-- 🌱 I’m currently learning **Machine Learning, Data Science and Artificial Intelligence for Recommender Systems, Finance and Scalable Edge Applications.**
+- 📫 Feel free to reach me out **siddhantpathak.applications@gmail.com.com**
 
-- 📫 Feel free to reach me out **siddhantpathak2@gmail.com**
-
-- 🏠 Also I've an interactive personal portfolio **[here](https://siddhantpathakk.github.io)**
 <!--Intro end-->
 <img src="https://user-images.githubusercontent.com/73097560/115834477-dbab4500-a447-11eb-908a-139a6edaec5c.gif">
