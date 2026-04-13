@@ -6,14 +6,17 @@ import Footer from '../components/Footer.astro';
 interface Props {
   title?: string;
   description?: string;
+  wide?: boolean;
 }
 
 const {
   title = 'Siddhant Pathak',
   description = 'Data Scientist at Singapore Airlines — GenAI infrastructure, LLM gateways, RAG, and graph neural network research.',
+  wide = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const mainMaxWidth = wide ? 'max-w-4xl' : 'max-w-3xl';
 ---
 
 <!doctype html>
@@ -29,20 +32,20 @@ const canonical = new URL(Astro.url.pathname, Astro.site).href;
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <title>{title}</title>
-  </head>
-  <body class="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors">
-    <Header />
-    <main class="mx-auto max-w-3xl px-6">
-      <slot />
-    </main>
-    <Footer />
     <script is:inline>
-      // Theme: respect saved preference, else system
+      // Theme: respect saved preference, else system. Run in <head> to avoid flash.
       const saved = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (saved === 'dark' || (!saved && prefersDark)) {
         document.documentElement.classList.add('dark');
       }
     </script>
+  </head>
+  <body class="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors">
+    <Header />
+    <main class={`mx-auto ${mainMaxWidth} px-6`}>
+      <slot />
+    </main>
+    <Footer />
   </body>
 </html>
