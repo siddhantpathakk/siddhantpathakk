@@ -2,6 +2,7 @@ export interface Award {
   title: string;
   detail: string;
   year?: number;
+  image?: string;
 }
 
 export interface Certification {
@@ -18,10 +19,12 @@ export const awards: Award[] = [
   {
     title: 'Third Place — Deep Learning Week Hackathon',
     detail: 'Icarus AI, NTU.',
+    image: '/photos/awards/icarus.jpg',
   },
   {
     title: 'Innovative Use of Natural Language Processing',
     detail: 'Distinction award for the Delphi news credibility project.',
+    image: '/photos/awards/delphi.jpg',
   },
 ];
 
