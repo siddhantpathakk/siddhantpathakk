@@ -1,0 +1,21 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import { projects } from '../data/projects';
+---
+
+<Base
+  wide
+  title="Projects · Siddhant Pathak"
+  description="Selected projects in graph neural networks, GenAI, and applied ML."
+>
+  <PageHeader
+    eyebrow="Projects"
+    title="Things I've built"
+    lede="A selection of research and engineering work spanning graph neural networks, GenAI, sports analytics, and applied ML."
+  />
+  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-12">
+    {projects.map((p) => <ProjectCard project={p} />)}
+  </div>
+</Base>

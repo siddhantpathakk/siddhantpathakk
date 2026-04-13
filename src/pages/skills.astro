@@ -1,0 +1,20 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import SkillsGrid from '../components/SkillsGrid.astro';
+import { skills } from '../data/skills';
+---
+
+<Base
+  title="Skills · Siddhant Pathak"
+  description="Languages, GenAI tooling, ML/DL frameworks, and cloud/MLOps."
+>
+  <PageHeader
+    eyebrow="Skills"
+    title="Tools of the trade"
+    lede="The languages, frameworks, and platforms I reach for most often when shipping data and AI work."
+  />
+  <div class="pb-12">
+    <SkillsGrid groups={skills} columns={2} />
+  </div>
+</Base>

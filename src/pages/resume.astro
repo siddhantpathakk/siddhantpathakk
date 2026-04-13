@@ -1,0 +1,60 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Timeline from '../components/Timeline.astro';
+import { site } from '../data/site';
+import { experience, education } from '../data/experience';
+---
+
+<Base
+  title="Resume · Siddhant Pathak"
+  description="Experience, education, and downloadable PDF resume."
+>
+  <PageHeader
+    eyebrow="Resume"
+    title="Experience & education"
+    lede="A short tour of where I've worked and studied. For the formatted PDF, use the button below."
+  />
+
+  <div class="flex flex-wrap gap-3 pb-12">
+    <a
+      href={site.resumeUrl}
+      download
+      class="inline-flex items-center gap-2 rounded-md bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
+    >
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
+        <polyline points="7 10 12 15 17 10"/>
+        <line x1="12" y1="15" x2="12" y2="3"/>
+      </svg>
+      Download PDF
+    </a>
+    <a
+      href={site.resumeUrl}
+      target="_blank"
+      rel="noopener"
+      class="inline-flex items-center gap-2 rounded-md border border-slate-300 dark:border-slate-700 px-4 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
+    >
+      Open in new tab
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
+        <polyline points="15 3 21 3 21 9"/>
+        <line x1="10" y1="14" x2="21" y2="3"/>
+      </svg>
+    </a>
+  </div>
+
+  <section class="pb-12">
+    <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">
+      Experience
+    </h2>
+    <Timeline items={experience} variant="work" />
+  </section>
+
+  <section class="pb-12">
+    <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">
+      Education
+    </h2>
+    <Timeline items={education} variant="education" />
+  </section>
+</Base>
