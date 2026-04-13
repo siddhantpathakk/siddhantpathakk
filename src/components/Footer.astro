@@ -1,12 +1,12 @@
 ---
-const year = new Date().getFullYear();
+import { site } from '../data/site';
 ---
 
-<footer class="mx-auto max-w-3xl px-6 py-10 mt-20 border-t border-slate-200 dark:border-slate-800 text-sm text-slate-500 dark:text-slate-400 flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
-  <p>&copy; {year} Siddhant Pathak</p>
-  <p>
-    Built with <a href="https://astro.build" class="underline hover:text-slate-900 dark:hover:text-slate-100">Astro</a>
-    &middot;
-    <a href="https://github.com/siddhantpathakk/siddhantpathakk" class="underline hover:text-slate-900 dark:hover:text-slate-100">Source</a>
-  </p>
+<footer class="mx-auto max-w-4xl px-6 py-12 mt-16 flex justify-center">
+  <a
+    href="/"
+    class="inline-flex items-center rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 px-4 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+  >
+    {site.domain}
+  </a>
 </footer>
