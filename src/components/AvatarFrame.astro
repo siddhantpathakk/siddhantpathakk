@@ -1,0 +1,32 @@
+---
+interface Props {
+  src?: string;
+  initials?: string;
+  size?: 'sm' | 'md' | 'lg';
+  shape?: 'square' | 'circle';
+}
+
+const { src, initials = 'SP', size = 'md', shape = 'square' } = Astro.props;
+
+const sizeClass = {
+  sm: 'h-24 w-24 text-2xl',
+  md: 'h-32 w-32 sm:h-40 sm:w-40 text-3xl',
+  lg: 'h-48 w-48 sm:h-64 sm:w-64 text-4xl sm:text-5xl',
+}[size];
+
+const shapeClass = shape === 'circle' ? 'rounded-full' : 'rounded-2xl';
+---
+
+{src ? (
+  <img
+    src={src}
+    alt={initials}
+    class={`${sizeClass} ${shapeClass} object-cover shadow-lg ring-1 ring-slate-200 dark:ring-slate-800`}
+  />
+) : (
+  <div
+    class={`${sizeClass} ${shapeClass} bg-gradient-to-br from-slate-200 to-slate-400 dark:from-slate-700 dark:to-slate-900 flex items-center justify-center font-bold text-slate-700 dark:text-slate-200 shadow-lg ring-1 ring-slate-200 dark:ring-slate-800`}
+  >
+    {initials}
+  </div>
+)}

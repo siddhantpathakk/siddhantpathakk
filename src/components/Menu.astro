@@ -1,0 +1,106 @@
+---
+interface Props {
+  currentPath: string;
+}
+
+const { currentPath } = Astro.props;
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/projects', label: 'Projects' },
+  { href: '/achievements', label: 'Achievements' },
+  { href: '/skills', label: 'Skills' },
+  { href: '/resume', label: 'Resume' },
+];
+
+const normalized = currentPath.replace(/\/$/, '') || '/';
+const isActive = (href: string) =>
+  href === '/' ? normalized === '/' : normalized === href || normalized.startsWith(href + '/');
+---
+
+<button
+  id="menu-open"
+  type="button"
+  aria-haspopup="dialog"
+  aria-controls="site-menu"
+  class="inline-flex items-center gap-1.5 rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 px-3.5 py-1.5 text-sm font-medium text-slate-700 dark:text-slate-200 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
+>
+  Menu
+  <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+    <polyline points="6 9 12 15 18 9"/>
+  </svg>
+</button>
+
+<dialog
+  id="site-menu"
+  aria-labelledby="site-menu-title"
+  class="m-0 mx-auto mt-20 w-[calc(100%-2rem)] max-w-md rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 p-0 shadow-2xl backdrop:bg-slate-950/60 backdrop:backdrop-blur-sm open:animate-[fadeIn_180ms_ease-out]"
+>
+  <div class="p-6">
+    <div class="flex items-center justify-between">
+      <p id="site-menu-title" class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400">
+        Navigation
+      </p>
+      <button
+        id="menu-close"
+        type="button"
+        aria-label="Close menu"
+        class="rounded-md p-1.5 text-slate-500 dark:text-slate-400 hover:bg-slate-100 dark:hover:bg-slate-800 transition-colors"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>
+        </svg>
+      </button>
+    </div>
+    <ul class="mt-5 divide-y divide-slate-200 dark:divide-slate-800">
+      {links.map((l) => {
+        const active = isActive(l.href);
+        return (
+          <li>
+            <a
+              href={l.href}
+              aria-current={active ? 'page' : undefined}
+              class:list={[
+                'flex items-center justify-between py-3.5 text-lg font-medium transition-colors',
+                active
+                  ? 'text-slate-900 dark:text-white'
+                  : 'text-slate-500 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white',
+              ]}
+            >
+              <span>{l.label}</span>
+              {active && (
+                <span class="text-slate-400 dark:text-slate-500" aria-hidden="true">→</span>
+              )}
+            </a>
+          </li>
+        );
+      })}
+    </ul>
+  </div>
+</dialog>
+
+<script is:inline>
+  const dlg = document.getElementById('site-menu');
+  const openBtn = document.getElementById('menu-open');
+  const closeBtn = document.getElementById('menu-close');
+
+  openBtn?.addEventListener('click', () => {
+    dlg?.showModal();
+    document.body.style.overflow = 'hidden';
+  });
+  closeBtn?.addEventListener('click', () => dlg?.close());
+  dlg?.addEventListener('close', () => {
+    document.body.style.overflow = '';
+  });
+  // Click on backdrop closes the dialog
+  dlg?.addEventListener('click', (e) => {
+    if (e.target === dlg) dlg.close();
+  });
+</script>
+
+<style>
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+</style>

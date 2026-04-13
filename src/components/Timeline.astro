@@ -1,0 +1,51 @@
+---
+import type { ExperienceItem, EducationItem } from '../data/experience';
+
+interface Props {
+  items: ExperienceItem[] | EducationItem[];
+  variant?: 'work' | 'education';
+}
+
+const { items, variant = 'work' } = Astro.props;
+
+function isExperience(item: ExperienceItem | EducationItem): item is ExperienceItem {
+  return (item as ExperienceItem).role !== undefined;
+}
+---
+
+<ol class="space-y-6 border-l border-slate-200 dark:border-slate-800 pl-6">
+  {items.map((item) => {
+    const isCurrent = isExperience(item) && item.current;
+    const dotClass = isCurrent
+      ? 'bg-emerald-500 ring-4 ring-emerald-500/20'
+      : variant === 'education'
+        ? 'bg-slate-300 dark:bg-slate-700'
+        : 'bg-slate-400 dark:bg-slate-600';
+
+    return (
+      <li class="relative">
+        <span class={`absolute -left-[29px] top-1.5 h-3 w-3 rounded-full ${dotClass}`}></span>
+        <p class="text-xs font-medium text-slate-500 dark:text-slate-400">{item.period}</p>
+        {isExperience(item) ? (
+          <>
+            <p class="font-semibold mt-0.5">
+              {item.role}
+              <span class="text-slate-500 dark:text-slate-400 font-normal"> · {item.company}</span>
+            </p>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">{item.summary}</p>
+          </>
+        ) : (
+          <>
+            <p class="font-semibold mt-0.5">
+              {item.degree}
+              <span class="text-slate-500 dark:text-slate-400 font-normal"> · {item.institution}</span>
+            </p>
+            {item.detail && (
+              <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">{item.detail}</p>
+            )}
+          </>
+        )}
+      </li>
+    );
+  })}
+</ol>
