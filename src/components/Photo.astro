@@ -1,0 +1,46 @@
+---
+interface Props {
+  src: string;
+  alt: string;
+  aspect?: 'square' | 'video' | 'portrait' | 'landscape';
+  rounded?: 'lg' | 'xl' | '2xl';
+  className?: string;
+}
+
+const { src, alt, aspect = 'landscape', rounded = 'xl', className = '' } = Astro.props;
+
+const aspectClass = {
+  square: 'aspect-square',
+  video: 'aspect-video',
+  portrait: 'aspect-[3/4]',
+  landscape: 'aspect-[4/3]',
+}[aspect];
+
+const roundedClass = {
+  lg: 'rounded-lg',
+  xl: 'rounded-xl',
+  '2xl': 'rounded-2xl',
+}[rounded];
+---
+
+<div
+  class={`relative overflow-hidden border border-dashed border-slate-300 dark:border-slate-700 bg-slate-50 dark:bg-slate-900/60 ${aspectClass} ${roundedClass} ${className}`}
+>
+  <!-- Placeholder visible behind the img; revealed when img errors -->
+  <div class="absolute inset-0 flex flex-col items-center justify-center text-slate-400 dark:text-slate-600 p-3 text-center">
+    <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8 mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      <rect x="3" y="3" width="18" height="18" rx="2" ry="2"/>
+      <circle cx="9" cy="9" r="2"/>
+      <path d="m21 15-3.086-3.086a2 2 0 0 0-2.828 0L6 21"/>
+    </svg>
+    <p class="text-[10px] uppercase tracking-wider font-medium">Photo placeholder</p>
+    <p class="text-[10px] font-mono mt-1 break-all opacity-80">{src}</p>
+  </div>
+  <img
+    src={src}
+    alt={alt}
+    loading="lazy"
+    onerror="this.style.display='none'"
+    class="relative w-full h-full object-cover"
+  />
+</div>

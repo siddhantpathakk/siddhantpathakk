@@ -1,5 +1,6 @@
 ---
 import type { Award, Certification } from '../data/achievements';
+import Photo from './Photo.astro';
 
 interface Props {
   heading: string;
@@ -23,6 +24,11 @@ function isAward(item: Award | Certification): item is Award {
       <li class="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
         {isAward(item) ? (
           <>
+            {item.image && (
+              <div class="mb-3">
+                <Photo src={item.image} alt={item.title} aspect="landscape" rounded="lg" />
+              </div>
+            )}
             <p class="font-semibold text-sm">{item.title}</p>
             <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">{item.detail}</p>
           </>
