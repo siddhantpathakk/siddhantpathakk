@@ -51,50 +51,30 @@ const mainMaxWidth = wide ? 'max-w-4xl' : 'max-w-3xl';
     <Footer />
 
     <script is:inline>
-      // ─── Animations init — re-runs on every view transition navigation ───
-      function initAnimations() {
-        const reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        if (reduce) return;
+      // ─── Scroll-reveal fallback (Safari/FF) — runs once, disconnects ───
+      function initReveal() {
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+        if (CSS.supports('animation-timeline: view()')) return;
 
-        // 1) Scroll-reveal fallback for browsers without scroll-driven animations
-        if (!CSS.supports('animation-timeline: view()')) {
-          const io = new IntersectionObserver((entries) => {
-            for (const entry of entries) {
-              if (entry.isIntersecting) {
-                entry.target.classList.add('in-view');
-                io.unobserve(entry.target);
-              }
+        const io = new IntersectionObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.isIntersecting) {
+              entry.target.classList.add('in-view');
+              io.unobserve(entry.target);
             }
-          }, { rootMargin: '0px 0px -10% 0px', threshold: 0.05 });
-          document.querySelectorAll('.reveal').forEach((el) => io.observe(el));
-        }
+          }
+        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
 
-        // 2) 3D tilt cards — follow the cursor
-        document.querySelectorAll('.tilt-card').forEach((card) => {
-          const el = card;
-          const onMove = (e) => {
-            const rect = el.getBoundingClientRect();
-            const x = (e.clientX - rect.left) / rect.width - 0.5;
-            const y = (e.clientY - rect.top) / rect.height - 0.5;
-            el.style.setProperty('--tilt-x', `${-y * 6}deg`);
-            el.style.setProperty('--tilt-y', `${x * 6}deg`);
-          };
-          const onLeave = () => {
-            el.style.setProperty('--tilt-x', `0deg`);
-            el.style.setProperty('--tilt-y', `0deg`);
-          };
-          el.addEventListener('mousemove', onMove);
-          el.addEventListener('mouseleave', onLeave);
-        });
+        document.querySelectorAll('.reveal:not(.in-view)').forEach((el) => io.observe(el));
       }
 
-      // Body scroll sometimes gets stuck if dialog was open during navigation
+      // Clear any stuck body scroll lock from an open menu during navigation
       function resetBodyScroll() {
         document.body.style.overflow = '';
       }
 
-      initAnimations();
-      document.addEventListener('astro:page-load', initAnimations);
+      initReveal();
+      document.addEventListener('astro:page-load', initReveal);
       document.addEventListener('astro:before-swap', resetBodyScroll);
     </script>
   </body>
