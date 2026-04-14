@@ -21,7 +21,7 @@ function isAward(item: Award | Certification): item is Award {
   </h2>
   <ul class={variant === 'award' ? 'mt-4 space-y-4' : 'mt-4 space-y-3'}>
     {items.map((item) => (
-      <li class="reveal rounded-lg border border-slate-200 dark:border-slate-800 p-4">
+      <li class="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
         {isAward(item) ? (
           <>
             {item.image && (

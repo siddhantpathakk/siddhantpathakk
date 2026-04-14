@@ -10,12 +10,12 @@ const { title, lede, eyebrow } = Astro.props;
 
 <header class="pt-16 pb-10 sm:pt-24 sm:pb-12">
   {eyebrow && (
-    <p class="fade-in text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3" style="--delay: 60ms">
+    <p class="text-xs font-medium uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-3">
       {eyebrow}
     </p>
   )}
-  <h1 class="fade-in text-4xl sm:text-5xl font-bold tracking-tighter" style="--delay: 140ms">{title}</h1>
+  <h1 class="text-4xl sm:text-5xl font-bold tracking-tighter">{title}</h1>
   {lede && (
-    <p class="fade-in mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed" style="--delay: 240ms">{lede}</p>
+    <p class="mt-4 text-lg text-slate-600 dark:text-slate-300 max-w-2xl leading-relaxed">{lede}</p>
   )}
 </header>

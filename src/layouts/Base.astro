@@ -1,6 +1,5 @@
 ---
 import '../styles/global.css';
-import { ClientRouter } from 'astro:transitions';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 
@@ -21,7 +20,7 @@ const mainMaxWidth = wide ? 'max-w-4xl' : 'max-w-3xl';
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,9 +32,7 @@ const mainMaxWidth = wide ? 'max-w-4xl' : 'max-w-3xl';
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
     <title>{title}</title>
-    <ClientRouter />
     <script is:inline>
-      // Theme: respect saved preference, else system. Run in <head> to avoid flash.
       const saved = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (saved === 'dark' || (!saved && prefersDark)) {
@@ -43,39 +40,11 @@ const mainMaxWidth = wide ? 'max-w-4xl' : 'max-w-3xl';
       }
     </script>
   </head>
-  <body class="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors">
+  <body class="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
     <Header />
     <main class={`mx-auto ${mainMaxWidth} px-6`}>
       <slot />
     </main>
     <Footer />
-
-    <script is:inline>
-      // ─── Scroll-reveal fallback (Safari/FF) — runs once, disconnects ───
-      function initReveal() {
-        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
-        if (CSS.supports('animation-timeline: view()')) return;
-
-        const io = new IntersectionObserver((entries) => {
-          for (const entry of entries) {
-            if (entry.isIntersecting) {
-              entry.target.classList.add('in-view');
-              io.unobserve(entry.target);
-            }
-          }
-        }, { rootMargin: '0px 0px -8% 0px', threshold: 0.05 });
-
-        document.querySelectorAll('.reveal:not(.in-view)').forEach((el) => io.observe(el));
-      }
-
-      // Clear any stuck body scroll lock from an open menu during navigation
-      function resetBodyScroll() {
-        document.body.style.overflow = '';
-      }
-
-      initReveal();
-      document.addEventListener('astro:page-load', initReveal);
-      document.addEventListener('astro:before-swap', resetBodyScroll);
-    </script>
   </body>
 </html>
