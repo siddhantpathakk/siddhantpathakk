@@ -1,5 +1,6 @@
 ---
 import type { SkillGroup } from '../data/skills';
+import { accents } from '../lib/accents';
 
 interface Props {
   groups: SkillGroup[];
@@ -16,16 +17,19 @@ const colClass = {
 ---
 
 <div class={`grid grid-cols-2 gap-4 ${colClass}`}>
-  {groups.map((g) => (
-    <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4">
-      <h3 class="text-sm font-semibold tracking-tight">{g.title}</h3>
-      <ul class="mt-3 flex flex-wrap gap-1.5">
-        {g.items.map((i) => (
-          <li class="rounded-md bg-indigo-50 dark:bg-indigo-950/30 px-2 py-0.5 text-xs font-medium text-indigo-700 dark:text-indigo-300">
-            {i}
-          </li>
-        ))}
-      </ul>
-    </div>
-  ))}
+  {groups.map((g) => {
+    const a = accents[g.accent];
+    return (
+      <div class="rounded-xl border border-slate-200 dark:border-slate-800 p-4">
+        <h3 class:list={['text-sm font-semibold tracking-tight', a.title]}>{g.title}</h3>
+        <ul class="mt-3 flex flex-wrap gap-1.5">
+          {g.items.map((i) => (
+            <li class:list={['rounded-md px-2 py-0.5 text-xs font-medium', a.chip]}>
+              {i}
+            </li>
+          ))}
+        </ul>
+      </div>
+    );
+  })}
 </div>
