@@ -1,3 +1,5 @@
+import type { Accent } from '../lib/accents';
+
 export interface ProjectItem {
   slug: string;
   title: string;
@@ -5,6 +7,7 @@ export interface ProjectItem {
   summary: string;
   href: string;
   year?: number;
+  accent: Accent;
 }
 
 export const projects: ProjectItem[] = [
@@ -15,6 +18,7 @@ export const projects: ProjectItem[] = [
     summary:
       'Temporal Attention Graph-Optimised Network modelling dynamic user interactions, improving relevance and timeliness by 20% across five real-world datasets and outperforming SOTA baselines in precision, recall, and user satisfaction.',
     href: 'https://github.com/siddhantpathakk/tagon',
+    accent: 'violet',
   },
   {
     slug: 'icarus-ai',
@@ -23,6 +27,7 @@ export const projects: ProjectItem[] = [
     summary:
       'Explainable job recommendation platform using candidate CVs and LLMs to deliver personalised career suggestions. Earned Third Place at the NTU Deep Learning Week Hackathon.',
     href: 'https://github.com/siddhantpathakk',
+    accent: 'indigo',
   },
   {
     slug: 'speech-emotion-recognition',
@@ -31,6 +36,7 @@ export const projects: ProjectItem[] = [
     summary:
       'Bi-directional GRU with attention mechanisms on the MELD dataset, improving classification accuracy beyond single-utterance baselines for multi-party dialogue and cross-utterance emotional dynamics.',
     href: 'https://github.com/siddhantpathakk/EmotionNet',
+    accent: 'emerald',
   },
   {
     slug: 'expected-goals',
@@ -39,6 +45,7 @@ export const projects: ProjectItem[] = [
     summary:
       'Spatio-temporal xG framework combining KNN, Random Forest, Logistic Regression, and neural networks with ensemble methods. Achieved 99.58% accuracy on a 1M-point English Premier League dataset. NTU President Research Scholar.',
     href: 'https://github.com/siddhantpathakk/URECA-SG_Football',
+    accent: 'amber',
   },
   {
     slug: 'delphi',
@@ -47,5 +54,6 @@ export const projects: ProjectItem[] = [
     summary:
       'End-to-end misinformation detection pipeline using GCNs over Twitter propagation patterns, achieving 95% accuracy. Awarded "Innovative Use of Natural Language Processing" distinction.',
     href: 'https://github.com/siddhantpathakk',
+    accent: 'rose',
   },
 ];

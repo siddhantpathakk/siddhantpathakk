@@ -1,11 +1,14 @@
+import type { Accent } from '../lib/accents';
+
 export interface SkillGroup {
   title: string;
   items: string[];
+  accent: Accent;
 }
 
 export const skills: SkillGroup[] = [
-  { title: 'Languages', items: ['Python', 'SQL', 'R', 'C++', 'Java', 'Bash'] },
-  { title: 'GenAI & LLMs', items: ['LiteLLM', 'vLLM', 'SGLang', 'LangChain', 'LangGraph', 'RAG'] },
-  { title: 'ML & DL', items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Flower', 'MLX'] },
-  { title: 'Cloud & MLOps', items: ['AWS', 'GCP', 'CI/CD', 'Datadog', 'Splunk', 'Prometheus'] },
+  { title: 'Languages', accent: 'sky', items: ['Python', 'SQL', 'R', 'C++', 'Java', 'Bash'] },
+  { title: 'GenAI & LLMs', accent: 'violet', items: ['LiteLLM', 'vLLM', 'SGLang', 'LangChain', 'LangGraph', 'RAG'] },
+  { title: 'ML & DL', accent: 'emerald', items: ['PyTorch', 'TensorFlow', 'Scikit-learn', 'Flower', 'MLX'] },
+  { title: 'Cloud & MLOps', accent: 'amber', items: ['AWS', 'GCP', 'CI/CD', 'Datadog', 'Splunk', 'Prometheus'] },
 ];
