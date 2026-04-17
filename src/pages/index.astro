@@ -5,7 +5,6 @@ import { site } from '../data/site';
 ---
 
 <Base>
-  <!-- HERO -->
   <section class="pt-12 sm:pt-20 pb-10 flex justify-center">
     <AvatarFrame src={site.photos.avatar} initials={site.initials} size="lg" shape="square" />
   </section>
@@ -36,28 +35,22 @@ import { site } from '../data/site';
     <div class="mt-10 flex flex-wrap gap-3">
       <a
         href="/projects"
-        class="rounded-md bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 text-sm font-medium hover:opacity-90 transition-opacity"
+        class="rounded-md bg-slate-900 dark:bg-white text-white dark:text-slate-900 px-4 py-2 text-sm font-medium hover:opacity-90"
       >
         View projects
       </a>
       <a
         href="/resume"
-        class="rounded-md border border-slate-300 dark:border-slate-700 px-4 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
+        class="rounded-md border border-slate-300 dark:border-slate-700 px-4 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900"
       >
         Resume
       </a>
     </div>
 
     <div class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
-      <a href={site.socials.github} class="hover:text-slate-900 dark:hover:text-white transition-colors">
-        GitHub ↗
-      </a>
-      <a href={site.socials.linkedin} class="hover:text-slate-900 dark:hover:text-white transition-colors">
-        LinkedIn ↗
-      </a>
-      <a href={site.socials.email} class="hover:text-slate-900 dark:hover:text-white transition-colors">
-        Email ↗
-      </a>
+      <a href={site.socials.github} class="hover:text-slate-900 dark:hover:text-white">GitHub ↗</a>
+      <a href={site.socials.linkedin} class="hover:text-slate-900 dark:hover:text-white">LinkedIn ↗</a>
+      <a href={site.socials.email} class="hover:text-slate-900 dark:hover:text-white">Email ↗</a>
     </div>
   </section>
 </Base>

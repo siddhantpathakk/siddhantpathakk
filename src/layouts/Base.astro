@@ -20,7 +20,7 @@ const mainMaxWidth = wide ? 'max-w-4xl' : 'max-w-3xl';
 ---
 
 <!doctype html>
-<html lang="en" class="scroll-smooth">
+<html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -33,7 +33,6 @@ const mainMaxWidth = wide ? 'max-w-4xl' : 'max-w-3xl';
     <meta property="og:url" content={canonical} />
     <title>{title}</title>
     <script is:inline>
-      // Theme: respect saved preference, else system. Run in <head> to avoid flash.
       const saved = localStorage.getItem('theme');
       const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
       if (saved === 'dark' || (!saved && prefersDark)) {
@@ -41,7 +40,7 @@ const mainMaxWidth = wide ? 'max-w-4xl' : 'max-w-3xl';
       }
     </script>
   </head>
-  <body class="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100 transition-colors">
+  <body class="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
     <Header />
     <main class={`mx-auto ${mainMaxWidth} px-6`}>
       <slot />
