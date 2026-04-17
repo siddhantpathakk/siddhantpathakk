@@ -57,6 +57,6 @@ export const education: EducationItem[] = [
     period: 'Aug 2020 — Jul 2024',
     degree: 'B.Eng. Computer Science (Honours, Distinction)',
     institution: 'Nanyang Technological University',
-    detail: 'Electives in Data Science and Artificial Intelligence. ASEAN Undergraduate Scholar.',
+    detail: 'Electives in Data Science and Artificial Intelligence.',
   },
 ];
