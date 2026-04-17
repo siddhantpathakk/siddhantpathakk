@@ -19,12 +19,12 @@ export const awards: Award[] = [
   {
     title: 'Third Place — Deep Learning Week Hackathon',
     detail: 'Icarus AI, NTU.',
-    image: '/photos/awards/icarus.jpg',
+    image: '/photos/awards/icarus.jpeg',
   },
   {
     title: 'Innovative Use of Natural Language Processing',
     detail: 'Distinction award for the Delphi news credibility project.',
-    image: '/photos/awards/delphi.jpg',
+    image: '/photos/awards/delphi.jpeg',
   },
 ];
 
