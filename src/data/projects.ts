@@ -14,7 +14,7 @@ export const projects: ProjectItem[] = [
     tags: ['GNN', 'Temporal Attention', 'PyTorch'],
     summary:
       'Temporal Attention Graph-Optimised Network modelling dynamic user interactions, improving relevance and timeliness by 20% across five real-world datasets and outperforming SOTA baselines in precision, recall, and user satisfaction.',
-    href: 'https://github.com/siddhantpathakk',
+    href: 'https://github.com/siddhantpathakk/tagon',
   },
   {
     slug: 'icarus-ai',
@@ -30,7 +30,7 @@ export const projects: ProjectItem[] = [
     tags: ['MELD', 'Multi-modal', 'Attention'],
     summary:
       'Bi-directional GRU with attention mechanisms on the MELD dataset, improving classification accuracy beyond single-utterance baselines for multi-party dialogue and cross-utterance emotional dynamics.',
-    href: 'https://github.com/siddhantpathakk',
+    href: 'https://github.com/siddhantpathakk/EmotionNet',
   },
   {
     slug: 'expected-goals',
@@ -38,7 +38,7 @@ export const projects: ProjectItem[] = [
     tags: ['Sports Analytics', 'Ensembles', 'NN'],
     summary:
       'Spatio-temporal xG framework combining KNN, Random Forest, Logistic Regression, and neural networks with ensemble methods. Achieved 99.58% accuracy on a 1M-point English Premier League dataset. NTU President Research Scholar.',
-    href: 'https://github.com/siddhantpathakk',
+    href: 'https://github.com/siddhantpathakk/URECA-SG_Football',
   },
   {
     slug: 'delphi',
