@@ -54,9 +54,9 @@ export const experience: ExperienceItem[] = [
 
 export const education: EducationItem[] = [
   {
-    period: 'Aug 2020 — Jul 2024',
+    period: 'Aug 2020 — Jun 2024',
     degree: 'B.Eng. Computer Science (Honours, Distinction)',
     institution: 'Nanyang Technological University',
-    detail: 'Electives in Data Science and Artificial Intelligence. ASEAN Undergraduate Scholar.',
+    detail: 'Specialised in Data Science and Artificial Intelligence.',
   },
 ];

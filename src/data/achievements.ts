@@ -8,33 +8,28 @@ export interface Award {
 export interface Certification {
   title: string;
   issuer: string;
+  year?: number;
   href?: string;
 }
 
 export const awards: Award[] = [
   {
-    title: 'NTU President Research Scholar',
-    detail: 'Expected Goal Model for Singapore Football.',
-  },
-  {
-    title: 'Third Place — Deep Learning Week Hackathon',
-    detail: 'Icarus AI, NTU.',
+    title: 'Third Place — Deep Learning Week Hackathon 2024',
+    detail: 'MLDA@EEE Club, NTU. Icarus AI — explainable GenAI job recommendations.',
+    year: 2024,
     image: '/photos/awards/icarus.jpeg',
   },
   {
+    title: 'NTU President Undergraduate Research Scholar',
+    detail: 'Awarded by Nanyang Technological University for the Expected Goals Model for Singapore Football research project.',
+    year: 2023,
+  },
+  {
     title: 'Innovative Use of Natural Language Processing',
-    detail: 'Distinction award for the Delphi news credibility project.',
+    detail: 'Deep Learning Week Hackathon 2022, MLDA@EEE Club, NTU. Delphi — news credibility via GCNs.',
+    year: 2022,
     image: '/photos/awards/delphi.jpeg',
   },
 ];
 
-export const certifications: Certification[] = [
-  { title: 'Applied Social Network Analysis in Python', issuer: 'University of Michigan' },
-  { title: 'The Science of Well-Being', issuer: 'Yale University' },
-  { title: 'Moral Foundation of Politics', issuer: 'Yale University' },
-  { title: 'Introduction to Climate Change and Health', issuer: 'Yale University' },
-  {
-    title: 'Ubiquitous Learning and Instructional Technologies',
-    issuer: 'University of Illinois at Urbana-Champaign',
-  },
-];
+export const certifications: Certification[] = [];
