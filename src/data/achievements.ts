@@ -32,20 +32,4 @@ export const awards: Award[] = [
   },
 ];
 
-export const certifications: Certification[] = [
-  {
-    title: 'Adobe CC Masterclass: Photoshop, Illustrator, XD & InDesign',
-    issuer: 'Udemy',
-    year: 2021,
-  },
-  {
-    title: "Diplôme d'Études en Langue Française (DELF) A2",
-    issuer: 'République française',
-    year: 2016,
-  },
-  {
-    title: "Diplôme d'Études en Langue Française (DELF) A1",
-    issuer: 'République française',
-    year: 2016,
-  },
-];
+export const certifications: Certification[] = [];

@@ -2,21 +2,20 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import AchievementList from '../components/AchievementList.astro';
-import { awards, certifications } from '../data/achievements';
+import { awards } from '../data/achievements';
 ---
 
 <Base
   wide
   title="Achievements · Siddhant Pathak"
-  description="Awards, scholarships, and certifications."
+  description="Awards, scholarships, and research recognition."
 >
   <PageHeader
     eyebrow="Achievements"
-    title="Awards & certifications"
-    lede="Recognition picked up along the way — from research scholarships to hackathon distinctions and continued learning."
+    title="Awards & recognition"
+    lede="Research scholarships and hackathon distinctions picked up along the way."
   />
-  <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 pb-12">
+  <div class="max-w-2xl pb-12">
     <AchievementList heading="Awards" items={awards} variant="award" />
-    <AchievementList heading="Certifications" items={certifications} variant="certification" />
   </div>
 </Base>
