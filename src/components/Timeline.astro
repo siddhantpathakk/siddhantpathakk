@@ -11,6 +11,20 @@ const { items, variant = 'work' } = Astro.props;
 function isExperience(item: ExperienceItem | EducationItem): item is ExperienceItem {
   return (item as ExperienceItem).role !== undefined;
 }
+
+type SummarySegment = { type: 'text'; value: string } | { type: 'link'; value: string; href: string };
+
+function renderSummary(summary: string, links?: { label: string; href: string }[]): SummarySegment[] {
+  if (!links?.length) return [{ type: 'text', value: summary }];
+  const escapeRegex = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const pattern = new RegExp(`(${links.map((l) => escapeRegex(l.label)).join('|')})`, 'g');
+  const hrefByLabel = new Map(links.map((l) => [l.label, l.href]));
+  return summary.split(pattern).map((part) =>
+    hrefByLabel.has(part)
+      ? { type: 'link', value: part, href: hrefByLabel.get(part)! }
+      : { type: 'text', value: part },
+  );
+}
 ---
 
 <ol class="space-y-6 border-l border-slate-200 dark:border-slate-800 pl-6">
@@ -32,7 +46,20 @@ function isExperience(item: ExperienceItem | EducationItem): item is ExperienceI
               {item.role}
               <span class="text-slate-500 dark:text-slate-400 font-normal"> · {item.company}</span>
             </p>
-            <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">{item.summary}</p>
+            <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
+              {renderSummary(item.summary, item.links).map((seg) =>
+                seg.type === 'link' ? (
+                  <a
+                    href={seg.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="text-sky-600 dark:text-sky-400 hover:underline"
+                  >{seg.value}</a>
+                ) : (
+                  <>{seg.value}</>
+                ),
+              )}
+            </p>
           </>
         ) : (
           <>

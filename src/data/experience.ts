@@ -4,6 +4,7 @@ export interface ExperienceItem {
   company: string;
   summary: string;
   current?: boolean;
+  links?: { label: string; href: string }[];
 }
 
 export interface EducationItem {
@@ -20,7 +21,11 @@ export const experience: ExperienceItem[] = [
     company: 'Singapore Airlines',
     current: true,
     summary:
-      'Re-architected the Flight Recommender onto serverless Lambda + in-house fare cache (~90% infra cost reduction, 33% latency improvement). Built a centralised LLM gateway over 30+ models via LiteLLM, production RAG for B2B travel search, and end-to-end open-source LLM deployments across AWS GPU and on-prem Mac Studio clusters.',
+      'Re-architected the Flight Recommender, cutting infra costs ~90% and latency by 33%. Built an internal LLM gateway powering enterprise-wide AI applications, a RAG-powered search engine on Agent360 for B2B travel, and open-source LLM deployments on cloud GPUs and on-prem Mac Studio clusters.',
+    links: [
+      { label: 'Flight Recommender', href: 'https://www.singaporeair.com/flight-recommender/' },
+      { label: 'Agent360', href: 'https://agent360.singaporeair.com/en_UK/us/index' },
+    ],
   },
   {
     period: 'Jan 2024 — Apr 2024',
