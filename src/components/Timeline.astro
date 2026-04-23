@@ -44,7 +44,19 @@ function renderSummary(summary: string, links?: { label: string; href: string }[
           <>
             <p class="font-semibold mt-0.5">
               {item.role}
-              <span class="text-slate-500 dark:text-slate-400 font-normal"> · {item.company}</span>
+              <span class="text-slate-500 dark:text-slate-400 font-normal">
+                {' · '}
+                {item.companyUrl ? (
+                  <a
+                    href={item.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="hover:text-sky-600 dark:hover:text-sky-400 hover:underline"
+                  >{item.company}</a>
+                ) : (
+                  <>{item.company}</>
+                )}
+              </span>
             </p>
             <p class="text-sm text-slate-600 dark:text-slate-300 mt-1 leading-relaxed">
               {renderSummary(item.summary, item.links).map((seg) =>
