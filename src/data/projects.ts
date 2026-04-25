@@ -12,6 +12,16 @@ export interface ProjectItem {
 
 export const projects: ProjectItem[] = [
   {
+    slug: 'clarion',
+    title: 'Clarion — AI Chief-of-Staff for Your Inbox',
+    tags: ['Anthropic SDK', 'MCP', 'Next.js'],
+    summary:
+      'An AI secretary built on the Anthropic SDK and MCP that turns a noisy inbox into a single prioritized briefing. Streaming chat with cited answers, a structured daily digest, and three swappable personas (Developer / Manager / Finance). Built at Push to Prod 2026, Singapore.',
+    href: 'https://pushtoprod-theta.vercel.app',
+    year: 2026,
+    accent: 'sky',
+  },
+  {
     slug: 'tagon',
     title: 'TAGON — Graph Neural Networks for Sequential Recommendation',
     tags: ['GNN', 'Temporal Attention', 'PyTorch'],
