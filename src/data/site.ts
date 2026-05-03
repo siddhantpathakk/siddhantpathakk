@@ -15,6 +15,7 @@ export const site = {
   socials: {
     github: 'https://github.com/siddhantpathakk',
     linkedin: 'https://www.linkedin.com/in/siddhantpathakk',
+    twitter: 'https://x.com/siddhantpathakk',
     email: 'mailto:siddhantpathak.applications@gmail.com',
   },
 };
