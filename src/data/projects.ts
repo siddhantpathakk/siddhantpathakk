@@ -14,7 +14,7 @@ export const projects: ProjectItem[] = [
   {
     slug: 'byline',
     title: 'Byline — AI-written newsletters on your tech topics',
-    tags: ['Multi-Agent Systems', 'Agentic Tool Use', 'Broadsheet PDF'],
+    tags: ['Multi-Agent Systems', 'Agentic Tool Use', 'Vertex AI'],
     summary:
       'Multi-user scheduled newsletter service built on a multi-agent workflow: planner, researcher, writer and editor agents coordinate tool-use across HN, Reddit, GitHub, ArXiv, Perplexity, Yahoo Finance, and web search, then typeset the output as a retro broadsheet-style PDF newspaper delivered on a cadence.',
     href: 'https://byline.siddhantpathakk.com',
