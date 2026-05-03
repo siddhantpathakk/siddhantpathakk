@@ -12,6 +12,16 @@ export interface ProjectItem {
 
 export const projects: ProjectItem[] = [
   {
+    slug: 'byline',
+    title: 'Byline — AI-written newsletters on your tech topics',
+    tags: ['Google ADK', 'Vertex AI', 'Multi-source agent'],
+    summary:
+      'Scheduled AI newsletter service. A Google ADK agent on Vertex AI Agent Engine (Gemini 3.1 Flash) grounds long-form posts in HN, Reddit, GitHub and ArXiv, then emails them on cadence. Next.js 15 + Supabase; every run is OpenTelemetry-traced and replayable.',
+    href: 'https://byline.siddhantpathakk.com',
+    year: 2026,
+    accent: 'teal',
+  },
+  {
     slug: 'clarion',
     title: 'Clarion — AI Chief-of-Staff for Your Inbox',
     tags: ['Anthropic SDK', 'MCP', 'Next.js'],
