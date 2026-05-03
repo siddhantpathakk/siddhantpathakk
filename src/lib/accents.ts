@@ -1,4 +1,4 @@
-export type Accent = 'sky' | 'violet' | 'emerald' | 'amber' | 'rose' | 'indigo';
+export type Accent = 'sky' | 'violet' | 'emerald' | 'amber' | 'rose' | 'indigo' | 'teal';
 
 export interface AccentClasses {
   chip: string;
@@ -50,5 +50,12 @@ export const accents: Record<Accent, AccentClasses> = {
     titleHover: 'group-hover:text-indigo-600 dark:group-hover:text-indigo-400',
     hoverBorder: 'hover:border-indigo-300 dark:hover:border-indigo-700',
     hoverBg: 'hover:bg-indigo-50/40 dark:hover:bg-indigo-950/20',
+  },
+  teal: {
+    chip: 'bg-teal-50 dark:bg-teal-950/30 text-teal-700 dark:text-teal-300',
+    title: 'text-teal-600 dark:text-teal-400',
+    titleHover: 'group-hover:text-teal-600 dark:group-hover:text-teal-400',
+    hoverBorder: 'hover:border-teal-300 dark:hover:border-teal-700',
+    hoverBg: 'hover:bg-teal-50/40 dark:hover:bg-teal-950/20',
   },
 };
