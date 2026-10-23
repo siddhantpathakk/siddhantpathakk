@@ -2,20 +2,38 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import ProjectCard from '../components/ProjectCard.astro';
+import WorkProjectCard from '../components/WorkProjectCard.astro';
 import { projects } from '../data/projects';
+import { workProjects } from '../data/work';
 ---
 
 <Base
   wide
   title="Projects · Siddhant Pathak"
-  description="Selected projects in graph neural networks, GenAI, and applied ML."
+  description="Production GenAI at Singapore Airlines, plus research and side projects in graph neural networks and applied ML."
 >
   <PageHeader
     eyebrow="Projects"
     title="Things I've built"
-    lede="A selection of research and engineering work spanning graph neural networks, GenAI, sports analytics, and applied ML."
+    lede="Production GenAI systems at Singapore Airlines, plus research and side projects spanning graph neural networks, agents, sports analytics, and applied ML."
   />
-  <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pb-12">
-    {projects.map((p) => <ProjectCard project={p} />)}
-  </div>
+
+  <section class="pb-12">
+    <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">
+      At Singapore Airlines
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {workProjects.map((p) => <WorkProjectCard project={p} />)}
+    </div>
+    <p class="mt-4 text-xs text-slate-500 dark:text-slate-400">Figures as of October 2026, rounded.</p>
+  </section>
+
+  <section class="pb-12">
+    <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">
+      Research &amp; side projects
+    </h2>
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+      {projects.map((p) => <ProjectCard project={p} />)}
+    </div>
+  </section>
 </Base>
