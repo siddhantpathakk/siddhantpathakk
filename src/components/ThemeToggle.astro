@@ -25,10 +25,14 @@
     apply(root.classList.contains('dark'));
     btn?.addEventListener('click', () => {
       const dark = !root.classList.contains('dark');
-      apply(dark);
       try {
         localStorage.setItem('theme', dark ? 'dark' : 'light');
       } catch {}
+      // Crossfade the whole page so the brightness change isn't a hard cut.
+      if (!document.startViewTransition) return apply(dark);
+      root.dataset.vt = 'theme';
+      const transition = document.startViewTransition(() => apply(dark));
+      transition.finished.finally(() => delete root.dataset.vt);
     });
   })();
 </script>

@@ -2,6 +2,7 @@
 import Base from '../layouts/Base.astro';
 import Photo from '../components/Photo.astro';
 import Arrow from '../components/Arrow.astro';
+import Button from '../components/Button.astro';
 import { site } from '../data/site';
 import { workProjects } from '../data/work';
 
@@ -31,25 +32,15 @@ const personLd = {
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(personLd)} />
 
   <section class="pt-12 sm:pt-20 pb-12 grid gap-8 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-12">
-    <div class="max-w-2xl">
-      <h1 class="text-5xl sm:text-7xl font-bold tracking-display leading-[1.02]">{site.name}</h1>
+    <div class="min-w-0 max-w-2xl">
+      <h1 class="text-[clamp(2.25rem,13vw,3rem)] sm:text-7xl font-bold tracking-display leading-[1.02]">{site.name}</h1>
       <p class="mt-5 text-xl sm:text-2xl leading-snug text-slate-700 dark:text-slate-300">
         Data Scientist building production GenAI at
         <span class="text-slate-900 dark:text-white font-medium">Singapore Airlines</span>.
       </p>
       <div class="mt-8 flex flex-wrap gap-3">
-        <a
-          href="/projects/"
-          class="inline-flex items-center rounded-md bg-indigo-600 dark:bg-indigo-500 text-white px-4 py-2.5 text-sm font-medium hover:bg-indigo-700 dark:hover:bg-indigo-400 motion-safe:active:scale-[0.97] transition-[background-color,transform] duration-150 ease-out-strong"
-        >
-          View projects
-        </a>
-        <a
-          href="/resume/"
-          class="inline-flex items-center rounded-md border border-slate-300 dark:border-slate-700 px-4 py-2.5 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 motion-safe:active:scale-[0.97] transition-[background-color,transform] duration-150 ease-out-strong"
-        >
-          Resume
-        </a>
+        <Button href="/projects/">View projects</Button>
+        <Button href="/resume/" variant="secondary">Resume</Button>
       </div>
     </div>
     <Photo
@@ -85,7 +76,7 @@ const personLd = {
     <ul class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
       {socials.map((s) => (
         <li>
-          <a href={s.href} class="inline-flex items-center gap-1 py-1 hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors">
+          <a href={s.href} class="group inline-flex items-center gap-1 py-1 hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors">
             {s.label}
             {s.external && <Arrow direction="up-right" class="h-3 w-3" />}
           </a>
@@ -101,13 +92,13 @@ const personLd = {
         <li>
           <a
             href={`/projects/#${p.slug}`}
-            class="group grid gap-y-2 rounded-lg px-3 py-4 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors sm:grid-cols-[1fr_auto] sm:items-baseline sm:gap-x-6"
+            class="group grid grid-cols-1 gap-y-2 rounded-lg px-3 py-4 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-x-6"
           >
             <span>
               <span class="block font-semibold group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors">{p.title}</span>
               <span class="mt-0.5 block text-slate-600 dark:text-slate-400">{p.pitch}</span>
             </span>
-            <span class="flex items-baseline gap-2 sm:block sm:text-right">
+            <span class="flex flex-wrap items-baseline gap-x-2 sm:block sm:max-w-60 sm:text-right">
               <span class="block text-2xl sm:text-3xl font-semibold tracking-display tabular-nums">{p.figure!.value}</span>
               <span class="block text-sm text-slate-600 dark:text-slate-400">{p.figure!.label}</span>
             </span>
@@ -117,7 +108,7 @@ const personLd = {
     </ul>
     <a
       href="/projects/"
-      class="mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-indigo-700 dark:text-indigo-400 hover:underline"
+      class="group mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-indigo-700 dark:text-indigo-400 hover:underline"
     >
       All projects
       <Arrow />

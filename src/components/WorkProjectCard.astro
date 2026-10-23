@@ -9,14 +9,17 @@ interface Props {
 const { project } = Astro.props;
 ---
 
-<article id={project.slug} class="scroll-mt-20 grid gap-x-10 gap-y-3 sm:grid-cols-[15rem_1fr]">
+<article
+  id={project.slug}
+  class="relative isolate grid gap-x-10 gap-y-3 sm:grid-cols-[15rem_1fr] before:absolute before:-inset-x-3 before:-inset-y-4 before:-z-10 before:rounded-xl before:bg-indigo-50 dark:before:bg-indigo-950/50 before:opacity-0 target:before:animate-[target-fade_1.6s_var(--ease-out-strong)]"
+>
   <div>
     <h3 class="text-lg font-semibold tracking-tight">{project.title}</h3>
     <p class="mt-1 text-slate-600 dark:text-slate-400 leading-relaxed">{project.pitch}</p>
     {project.href && (
       <a
         href={project.href}
-        class="mt-3 inline-flex items-center gap-1 text-sm font-medium text-indigo-700 dark:text-indigo-400 hover:underline"
+        class="group mt-3 inline-flex items-center gap-1 text-sm font-medium text-indigo-700 dark:text-indigo-400 hover:underline"
       >
         Live site
         <Arrow direction="up-right" />

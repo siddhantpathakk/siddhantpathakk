@@ -15,7 +15,7 @@ const socials = [
       <p class="font-semibold tracking-tight">{site.name}</p>
       <a
         href={site.socials.email}
-        class="mt-1 inline-block break-all text-sm text-slate-600 dark:text-slate-400 underline decoration-slate-300 dark:decoration-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 hover:decoration-current transition-colors"
+        class="mt-1 inline-block wrap-anywhere text-sm text-slate-600 dark:text-slate-400 underline decoration-slate-300 dark:decoration-slate-700 hover:text-indigo-700 dark:hover:text-indigo-400 hover:decoration-current transition-colors"
       >
         {site.email}
       </a>
@@ -23,7 +23,7 @@ const socials = [
     <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
       {socials.map((s) => (
         <li>
-          <a href={s.href} class="inline-flex items-center gap-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+          <a href={s.href} class="group inline-flex items-center gap-1 hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors">
             {s.label}
             <Arrow direction="up-right" class="h-3 w-3" />
           </a>

@@ -1,4 +1,5 @@
-import avatar from '../assets/photos/avatar.jpg';
+// Face-centred square crop of avatar.jpg (the original, kept as the source).
+import avatar from '../assets/photos/avatar-portrait.jpg';
 import graduation from '../assets/photos/graduation.jpg';
 
 export const site = {

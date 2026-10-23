@@ -5,12 +5,13 @@ import Timeline from '../components/Timeline.astro';
 import Photo from '../components/Photo.astro';
 import AchievementList from '../components/AchievementList.astro';
 import SkillsGrid from '../components/SkillsGrid.astro';
+import Button from '../components/Button.astro';
 import { site } from '../data/site';
 import { experience, education } from '../data/experience';
 import { awards } from '../data/achievements';
 import { skills } from '../data/skills';
 
-const sectionHeading = 'scroll-mt-20 text-xl font-semibold tracking-tight';
+const sectionHeading = 'text-xl font-semibold tracking-tight';
 ---
 
 <Base
@@ -23,31 +24,22 @@ const sectionHeading = 'scroll-mt-20 text-xl font-semibold tracking-tight';
   />
 
   <div class="flex flex-wrap gap-3 pb-16">
-    <a
-      href={site.resumeUrl}
-      download
-      class="inline-flex items-center gap-2 rounded-md bg-indigo-600 dark:bg-indigo-500 text-white px-4 py-2.5 text-sm font-medium hover:bg-indigo-700 dark:hover:bg-indigo-400 motion-safe:active:scale-[0.97] transition-[background-color,transform] duration-150 ease-out-strong"
-    >
+    <Button href={site.resumeUrl} download>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <polyline points="7 10 12 15 17 10"/>
         <line x1="12" y1="15" x2="12" y2="3"/>
       </svg>
       Download PDF
-    </a>
-    <a
-      href={site.resumeUrl}
-      target="_blank"
-      rel="noopener"
-      class="inline-flex items-center gap-2 rounded-md border border-slate-300 dark:border-slate-700 px-4 py-2.5 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 motion-safe:active:scale-[0.97] transition-[background-color,transform] duration-150 ease-out-strong"
-    >
+    </Button>
+    <Button href={site.resumeUrl} target="_blank" rel="noopener" variant="secondary">
       Open in new tab
       <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
         <polyline points="15 3 21 3 21 9"/>
         <line x1="10" y1="14" x2="21" y2="3"/>
       </svg>
-    </a>
+    </Button>
   </div>
 
   <section aria-labelledby="experience" class="pb-16">
@@ -69,7 +61,7 @@ const sectionHeading = 'scroll-mt-20 text-xl font-semibold tracking-tight';
         aspect="portrait"
         rounded="xl"
         position="top"
-        class="w-60 md:w-full"
+        class="w-60 max-w-full md:w-full"
       />
     </div>
   </section>

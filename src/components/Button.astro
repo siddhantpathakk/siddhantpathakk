@@ -1,0 +1,29 @@
+---
+import type { HTMLAttributes } from 'astro/types';
+
+interface Props extends HTMLAttributes<'a'> {
+  href: string;
+  variant?: 'primary' | 'secondary';
+}
+
+const { variant = 'primary', class: className, ...attrs } = Astro.props;
+
+const variants = {
+  primary:
+    'bg-indigo-600 text-white hover:bg-indigo-700 dark:bg-indigo-500 dark:hover:bg-indigo-400',
+  secondary:
+    'border border-slate-300 hover:bg-slate-50 dark:border-slate-700 dark:hover:bg-slate-900',
+};
+---
+
+<a
+  {...attrs}
+  class:list={[
+    'group inline-flex items-center gap-2 rounded-md px-4 py-2.5 text-sm font-medium',
+    'transition-[background-color,transform] duration-150 ease-out-strong motion-safe:active:scale-[0.97]',
+    variants[variant],
+    className,
+  ]}
+>
+  <slot />
+</a>
