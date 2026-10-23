@@ -1,48 +1,35 @@
 ---
-import type { Award, Certification } from '../data/achievements';
+import type { Award } from '../data/achievements';
 import Photo from './Photo.astro';
 
 interface Props {
-  heading: string;
-  items: Award[] | Certification[];
-  variant: 'award' | 'certification';
+  items: Award[];
 }
 
-const { heading, items, variant } = Astro.props;
-
-function isAward(item: Award | Certification): item is Award {
-  return (item as Award).detail !== undefined;
-}
+const { items } = Astro.props;
 ---
 
-<section>
-  <h2 class="text-sm font-semibold uppercase tracking-wide text-slate-500 dark:text-slate-400">
-    {heading}
-  </h2>
-  <ul class={variant === 'award' ? 'mt-4 space-y-4' : 'mt-4 space-y-3'}>
-    {items.map((item) => (
-      <li class="rounded-lg border border-slate-200 dark:border-slate-800 p-4">
-        {isAward(item) ? (
-          <>
-            {item.image && (
-              <div class="mb-3">
-                <Photo src={item.image} alt={item.title} aspect="landscape" rounded="lg" />
-              </div>
-            )}
-            <p class="font-semibold text-sm">{item.title}</p>
-            <p class="text-sm text-slate-600 dark:text-slate-300 mt-1">{item.detail}</p>
-          </>
-        ) : (
-          <>
-            {item.href ? (
-              <a href={item.href} class="font-medium text-sm hover:underline">{item.title}</a>
-            ) : (
-              <p class="font-medium text-sm">{item.title}</p>
-            )}
-            <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">{item.issuer}</p>
-          </>
+<ul class="space-y-8">
+  {items.map((item) => (
+    <li class="grid gap-4 sm:grid-cols-[1fr_14rem] sm:gap-8">
+      <div>
+        {item.year && (
+          <p class="text-sm font-medium text-slate-500 dark:text-slate-400 tabular-nums">{item.year}</p>
         )}
-      </li>
-    ))}
-  </ul>
-</section>
+        <p class="mt-0.5 font-semibold">{item.title}</p>
+        <p class="mt-1 max-w-2xl text-slate-700 dark:text-slate-300 leading-relaxed">{item.detail}</p>
+      </div>
+      {item.image && (
+        <Photo
+          src={item.image.src}
+          alt={item.image.alt}
+          width={384}
+          sizes="(min-width: 640px) 224px, min(calc(100vw - 2rem), 24rem)"
+          aspect="landscape"
+          rounded="lg"
+          class="max-w-sm sm:max-w-none"
+        />
+      )}
+    </li>
+  ))}
+</ul>

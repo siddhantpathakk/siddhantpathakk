@@ -1,12 +1,34 @@
 ---
 import { site } from '../data/site';
+import Arrow from './Arrow.astro';
+
+const socials = [
+  { href: site.socials.github, label: 'GitHub' },
+  { href: site.socials.linkedin, label: 'LinkedIn' },
+  { href: site.socials.x, label: 'X' },
+];
 ---
 
-<footer class="mx-auto max-w-4xl px-6 py-12 mt-16 flex justify-center">
-  <a
-    href="/"
-    class="inline-flex items-center rounded-full border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900/60 px-4 py-1.5 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
-  >
-    {site.domain}
-  </a>
+<footer class="mx-auto max-w-4xl px-4 sm:px-6 pt-16 pb-12">
+  <div class="flex flex-col gap-6 border-t border-slate-200 dark:border-slate-800 pt-8 sm:flex-row sm:items-end sm:justify-between">
+    <div>
+      <p class="font-semibold tracking-tight">{site.name}</p>
+      <a
+        href={site.socials.email}
+        class="mt-1 inline-block break-all text-sm text-slate-600 dark:text-slate-400 underline decoration-slate-300 dark:decoration-slate-700 hover:text-indigo-600 dark:hover:text-indigo-400 hover:decoration-current transition-colors"
+      >
+        {site.email}
+      </a>
+    </div>
+    <ul class="flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
+      {socials.map((s) => (
+        <li>
+          <a href={s.href} class="inline-flex items-center gap-1 hover:text-indigo-600 dark:hover:text-indigo-400 transition-colors">
+            {s.label}
+            <Arrow direction="up-right" class="h-3 w-3" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </div>
 </footer>

@@ -1,14 +1,91 @@
 @import "tailwindcss";
+@import "@fontsource-variable/inter";
+
+/* Vendored agent skills ship HTML/MD full of class names; keep them out of the CSS bundle. */
+@source not "../../.claude";
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 @theme {
-  --font-sans: "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
-  --font-mono: "JetBrains Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+  --font-sans: "Inter Variable", "Inter", ui-sans-serif, system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --tracking-display: -0.025em;
+  --ease-out-strong: cubic-bezier(0.23, 1, 0.32, 1);
+}
+
+html {
+  color-scheme: light;
+  accent-color: var(--color-indigo-600);
+  -webkit-tap-highlight-color: transparent;
+  -webkit-text-size-adjust: 100%;
+}
+
+html.dark {
+  color-scheme: dark;
+  accent-color: var(--color-indigo-400);
 }
 
 body {
   font-family: var(--font-sans);
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+}
+
+h1,
+h2,
+h3 {
+  text-wrap: balance;
+}
+
+p,
+li {
+  text-wrap: pretty;
+}
+
+a {
+  text-underline-offset: 0.2em;
+}
+
+a,
+button {
+  touch-action: manipulation;
+}
+
+button {
+  user-select: none;
+  -webkit-user-select: none;
+}
+
+:focus-visible {
+  outline: 2px solid var(--color-indigo-600);
+  outline-offset: 3px;
+}
+
+.dark :focus-visible {
+  outline-color: var(--color-indigo-400);
+}
+
+::selection {
+  background-color: var(--color-indigo-100);
+  color: var(--color-indigo-950);
+}
+
+.dark ::selection {
+  background-color: var(--color-indigo-900);
+  color: var(--color-indigo-50);
+}
+
+/* Cross-document crossfade between pages; the header stays put. */
+@view-transition {
+  navigation: auto;
+}
+
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation-duration: 180ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  @view-transition {
+    navigation: none;
+  }
 }

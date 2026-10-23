@@ -1,0 +1,28 @@
+---
+import Base from '../layouts/Base.astro';
+import PageHeader from '../components/PageHeader.astro';
+import Arrow from '../components/Arrow.astro';
+
+const links = [
+  { href: '/', label: 'Home' },
+  { href: '/projects/', label: 'Projects' },
+  { href: '/resume/', label: 'Resume' },
+];
+---
+
+<Base title="Page not found · Siddhant Pathak" description="This page doesn’t exist." noindex>
+  <PageHeader
+    title="Page not found"
+    lede="That page doesn’t exist, or it moved when the site was reorganised. Skills and awards now live on the resume page."
+  />
+  <ul class="flex flex-wrap gap-x-6 gap-y-3 pb-24">
+    {links.map((l) => (
+      <li>
+        <a href={l.href} class="inline-flex items-center gap-1.5 font-medium text-indigo-700 dark:text-indigo-400 hover:underline">
+          {l.label}
+          <Arrow />
+        </a>
+      </li>
+    ))}
+  </ul>
+</Base>
