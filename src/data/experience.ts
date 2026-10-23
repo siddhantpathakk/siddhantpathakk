@@ -23,7 +23,7 @@ export const experience: ExperienceItem[] = [
     companyUrl: 'https://www.singaporeair.com',
     current: true,
     summary:
-      'Lead engineer on Agent Builder, which turns plain-English requests into tested AI workflows. Built and run Agent360 Smart Search, a cited RAG answer engine for B2B travel agents. Built the next version and skills platform of Action with Data, and core parts of the Commercial Insights Copilot. Led the enterprise LLM gateway (40+ models, 4 providers, 50+ teams) through its third generation. Owned the Flight Recommender until it merged into SIA’s AI assistant, cutting infra cost ~90% and latency by a third. Led open-source LLM deployments on cloud GPUs and on-prem Mac Studio clusters.',
+      'Lead engineer on Agent Builder, which turns plain-English requests into tested AI workflows. Built and run Agent360 Smart Search, a cited RAG answer engine for B2B travel agents. Built the next version and skills platform of Action with Data, and core parts of the Commercial Insights Copilot. Architected the current enterprise LLM gateway (40+ models, 4 providers, 50+ teams). Re-architected the Flight Recommender, cutting infra cost ~90% and latency by a third. Led open-source LLM deployments on cloud GPUs and on-prem Mac Studio clusters.',
     links: [
       { label: 'Agent360 Smart Search', href: 'https://agent360.singaporeair.com/en_UK/us/index' },
     ],
