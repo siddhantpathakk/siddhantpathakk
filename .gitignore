@@ -23,3 +23,6 @@ pnpm-debug.log*
 
 # astro
 .astro/
+
+# playwright-cli session output
+.playwright-cli/

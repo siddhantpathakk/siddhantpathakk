@@ -3,62 +3,80 @@ import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Timeline from '../components/Timeline.astro';
 import Photo from '../components/Photo.astro';
+import AchievementList from '../components/AchievementList.astro';
+import SkillsGrid from '../components/SkillsGrid.astro';
+import Button from '../components/Button.astro';
 import { site } from '../data/site';
 import { experience, education } from '../data/experience';
+import { awards } from '../data/achievements';
+import { skills } from '../data/skills';
+
+const sectionHeading = 'text-xl font-semibold tracking-tight';
 ---
 
 <Base
   title="Resume · Siddhant Pathak"
-  description="Experience, education, and downloadable PDF resume."
+  description="Experience, education, awards, skills, and a downloadable PDF resume."
 >
   <PageHeader
-    eyebrow="Resume"
-    title="Experience & education"
-    lede="A short tour of where I've worked and studied. For the formatted PDF, use the button below."
+    title="Resume"
+    lede="Where I’ve worked and studied, what I’ve won, and the tools I reach for. For the formatted PDF, use the buttons below."
   />
 
-  <div class="flex flex-wrap gap-3 pb-12">
-    <a
-      href={site.resumeUrl}
-      download
-      class="inline-flex items-center gap-2 rounded-md bg-indigo-600 dark:bg-indigo-500 text-white px-4 py-2 text-sm font-medium hover:bg-indigo-700 dark:hover:bg-indigo-400"
-    >
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+  <div class="flex flex-wrap gap-3 pb-16">
+    <Button href={site.resumeUrl} download>
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
         <polyline points="7 10 12 15 17 10"/>
         <line x1="12" y1="15" x2="12" y2="3"/>
       </svg>
       Download PDF
-    </a>
-    <a
-      href={site.resumeUrl}
-      target="_blank"
-      rel="noopener"
-      class="inline-flex items-center gap-2 rounded-md border border-slate-300 dark:border-slate-700 px-4 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors"
-    >
+    </Button>
+    <Button href={site.resumeUrl} target="_blank" rel="noopener" variant="secondary">
       Open in new tab
-      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
         <polyline points="15 3 21 3 21 9"/>
         <line x1="10" y1="14" x2="21" y2="3"/>
       </svg>
-    </a>
+    </Button>
   </div>
 
-  <section class="pb-12">
-    <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">
-      Experience
-    </h2>
-    <Timeline items={experience} variant="work" />
+  <section aria-labelledby="experience" class="pb-16">
+    <h2 id="experience" class={sectionHeading}>Experience</h2>
+    <div class="mt-8">
+      <Timeline items={experience} variant="work" />
+    </div>
   </section>
 
-  <section class="pb-12">
-    <h2 class="text-xs font-semibold uppercase tracking-wider text-slate-500 dark:text-slate-400 mb-6">
-      Education
-    </h2>
-    <div class="grid grid-cols-1 md:grid-cols-[1fr_240px] gap-6 items-start">
+  <section aria-labelledby="education" class="pb-16">
+    <h2 id="education" class={sectionHeading}>Education</h2>
+    <div class="mt-8 grid grid-cols-1 md:grid-cols-[1fr_15rem] gap-8 items-start">
       <Timeline items={education} variant="education" />
-      <Photo src={site.photos.graduation} alt="NTU graduation" aspect="portrait" rounded="xl" />
+      <Photo
+        src={site.photos.graduation}
+        alt="Siddhant in his graduation gown at NTU, holding his mortarboard aloft"
+        width={240}
+        sizes="(min-width: 768px) 240px, 15rem"
+        aspect="portrait"
+        rounded="xl"
+        position="top"
+        class="w-60 max-w-full md:w-full"
+      />
+    </div>
+  </section>
+
+  <section aria-labelledby="awards" class="pb-16">
+    <h2 id="awards" class={sectionHeading}>Awards</h2>
+    <div class="mt-8">
+      <AchievementList items={awards} />
+    </div>
+  </section>
+
+  <section aria-labelledby="skills" class="pb-12">
+    <h2 id="skills" class={sectionHeading}>Skills</h2>
+    <div class="mt-8">
+      <SkillsGrid groups={skills} />
     </div>
   </section>
 </Base>

@@ -1,25 +1,66 @@
 ---
 import Base from '../layouts/Base.astro';
-import AvatarFrame from '../components/AvatarFrame.astro';
+import Photo from '../components/Photo.astro';
+import Arrow from '../components/Arrow.astro';
+import Button from '../components/Button.astro';
 import { site } from '../data/site';
+import { workProjects } from '../data/work';
+
+const selected = workProjects.filter((p) => p.figure);
+
+const socials = [
+  { href: site.socials.github, label: 'GitHub', external: true },
+  { href: site.socials.linkedin, label: 'LinkedIn', external: true },
+  { href: site.socials.x, label: 'X', external: true },
+  { href: site.socials.email, label: 'Email', external: false },
+];
+
+const personLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Person',
+  name: site.name,
+  url: site.url,
+  jobTitle: 'Data Scientist',
+  worksFor: { '@type': 'Organization', name: 'Singapore Airlines' },
+  alumniOf: { '@type': 'CollegeOrUniversity', name: 'Nanyang Technological University' },
+  email: site.email,
+  sameAs: [site.socials.github, site.socials.linkedin, site.socials.x],
+};
 ---
 
 <Base>
-  <section class="pt-12 sm:pt-20 pb-10 flex justify-center">
-    <AvatarFrame src={site.photos.avatar} initials={site.initials} size="lg" shape="square" />
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify(personLd)} />
+
+  <section class="pt-12 sm:pt-20 pb-12 grid gap-8 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-12">
+    <div class="min-w-0 max-w-2xl">
+      <h1 class="text-[clamp(2.25rem,13vw,3rem)] sm:text-7xl font-bold tracking-display leading-[1.02]">{site.name}</h1>
+      <p class="mt-5 text-xl sm:text-2xl leading-snug text-slate-700 dark:text-slate-300">
+        Data Scientist building production GenAI at
+        <span class="text-slate-900 dark:text-white font-medium">Singapore Airlines</span>.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-3">
+        <Button href="/projects/">View projects</Button>
+        <Button href="/resume/" variant="secondary">Resume</Button>
+      </div>
+    </div>
+    <Photo
+      src={site.photos.avatar}
+      alt={`Portrait of ${site.name}`}
+      width={176}
+      sizes="(min-width: 640px) 176px, 112px"
+      aspect="square"
+      rounded="2xl"
+      priority
+      class="order-first h-28 w-28 sm:order-none sm:h-44 sm:w-44"
+    />
   </section>
 
-  <section class="pb-12">
-    <h1 class="text-4xl sm:text-5xl font-bold tracking-tighter leading-[1.1]">
-      A passionate Data Scientist building <span class="text-indigo-600 dark:text-indigo-400">GenAI</span> in Singapore
-    </h1>
-
-    <div class="mt-8 space-y-5 text-base sm:text-lg text-slate-600 dark:text-slate-300 leading-relaxed">
+  <section class="pb-16">
+    <div class="max-w-2xl space-y-5 text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
       <p>
-        I'm Siddhant — a Data Scientist at <span class="text-slate-900 dark:text-white font-medium">Singapore Airlines</span>,
-        where I build production GenAI: Agent Builder, which turns a plain-English request into a tested AI
-        workflow; a cited RAG search engine for B2B travel agents; data-analysis copilots; and the enterprise LLM
-        gateway that routes traffic to 40+ models across 4 providers.
+        I build Agent Builder, which turns a plain-English request into a tested AI workflow; a cited RAG search
+        engine for B2B travel agents; data-analysis copilots; and the enterprise LLM gateway that routes traffic to
+        40+ models across 4 providers.
       </p>
       <p>
         I graduated from <span class="text-slate-900 dark:text-white font-medium">Nanyang Technological University</span>
@@ -27,31 +68,50 @@ import { site } from '../data/site';
         sits at the intersection of graph neural networks, sequential recommendation, and applied AI.
       </p>
       <p>
-        Outside work I'm drawn to the messy, useful edges of ML — on-device inference, retrieval systems, and
+        Outside work I’m drawn to the messy, useful edges of ML: on-device inference, retrieval systems, and
         anything that pushes models out of notebooks and into production.
       </p>
     </div>
 
-    <div class="mt-10 flex flex-wrap gap-3">
-      <a
-        href="/projects"
-        class="rounded-md bg-indigo-600 dark:bg-indigo-500 text-white px-4 py-2 text-sm font-medium hover:bg-indigo-700 dark:hover:bg-indigo-400"
-      >
-        View projects
-      </a>
-      <a
-        href="/resume"
-        class="rounded-md border border-slate-300 dark:border-slate-700 px-4 py-2 text-sm font-medium hover:bg-slate-50 dark:hover:bg-slate-900"
-      >
-        Resume
-      </a>
-    </div>
+    <ul class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
+      {socials.map((s) => (
+        <li>
+          <a href={s.href} class="group inline-flex items-center gap-1 py-1 hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors">
+            {s.label}
+            {s.external && <Arrow direction="up-right" class="h-3 w-3" />}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
 
-    <div class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-500 dark:text-slate-400">
-      <a href={site.socials.github} class="hover:text-indigo-600 dark:hover:text-indigo-400">GitHub ↗</a>
-      <a href={site.socials.linkedin} class="hover:text-indigo-600 dark:hover:text-indigo-400">LinkedIn ↗</a>
-      <a href={site.socials.twitter} class="hover:text-indigo-600 dark:hover:text-indigo-400">Twitter ↗</a>
-      <a href={site.socials.email} class="hover:text-indigo-600 dark:hover:text-indigo-400">Email ↗</a>
-    </div>
+  <section aria-labelledby="selected-work" class="pb-8">
+    <h2 id="selected-work" class="text-xl font-semibold tracking-tight">Selected work at Singapore Airlines</h2>
+    <ul class="mt-4 -mx-3">
+      {selected.map((p) => (
+        <li>
+          <a
+            href={`/projects/#${p.slug}`}
+            class="group grid grid-cols-1 gap-y-2 rounded-lg px-3 py-4 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-x-6"
+          >
+            <span>
+              <span class="block font-semibold group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors">{p.title}</span>
+              <span class="mt-0.5 block text-slate-600 dark:text-slate-400">{p.pitch}</span>
+            </span>
+            <span class="flex flex-wrap items-baseline gap-x-2 sm:block sm:max-w-60 sm:text-right">
+              <span class="block text-2xl sm:text-3xl font-semibold tracking-display tabular-nums">{p.figure!.value}</span>
+              <span class="block text-sm text-slate-600 dark:text-slate-400">{p.figure!.label}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+    <a
+      href="/projects/"
+      class="group mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-indigo-700 dark:text-indigo-400 hover:underline"
+    >
+      All projects
+      <Arrow />
+    </a>
   </section>
 </Base>

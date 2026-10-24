@@ -1,22 +1,26 @@
 ---
 import '../styles/global.css';
+import { getImage } from 'astro:assets';
+import interLatin from '@fontsource-variable/inter/files/inter-latin-opsz-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
+import { site } from '../data/site';
 
 interface Props {
   title?: string;
   description?: string;
-  wide?: boolean;
+  noindex?: boolean;
 }
 
 const {
-  title = 'Siddhant Pathak',
+  title = 'Siddhant Pathak · Data Scientist',
   description = 'Data Scientist at Singapore Airlines — GenAI infrastructure, LLM gateways, RAG, and graph neural network research.',
-  wide = false,
+  noindex = false,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const mainMaxWidth = wide ? 'max-w-4xl' : 'max-w-3xl';
+const ogImage = await getImage({ src: site.photos.avatar, width: 1200, height: 630, fit: 'cover', format: 'jpg' });
+const ogImageUrl = new URL(ogImage.src, Astro.site).href;
 ---
 
 <!doctype html>
@@ -25,24 +29,43 @@ const mainMaxWidth = wide ? 'max-w-4xl' : 'max-w-3xl';
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
+    <meta name="theme-color" content="#ffffff" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="canonical" href={canonical} />
+    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
+    {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
     <meta property="og:type" content="website" />
     <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content={site.name} />
+    <meta property="og:image" content={ogImageUrl} />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content={`Photo of ${site.name}`} />
+    <meta name="twitter:card" content="summary_large_image" />
     <title>{title}</title>
     <script is:inline>
-      const saved = localStorage.getItem('theme');
-      const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-      if (saved === 'dark' || (!saved && prefersDark)) {
-        document.documentElement.classList.add('dark');
-      }
+      (() => {
+        let saved = null;
+        try {
+          saved = localStorage.getItem('theme');
+        } catch {}
+        const dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
+        document.documentElement.classList.toggle('dark', dark);
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#020618' : '#ffffff');
+      })();
     </script>
+    <slot name="head" />
   </head>
-  <body class="min-h-screen bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+    <a
+      href="#main"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:shadow-lg dark:focus:bg-slate-900"
+    >
+      Skip to content
+    </a>
     <Header />
-    <main class={`mx-auto ${mainMaxWidth} px-6`}>
+    <main id="main" class="mx-auto max-w-4xl px-4 sm:px-6">
       <slot />
     </main>
     <Footer />

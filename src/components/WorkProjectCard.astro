@@ -1,30 +1,32 @@
 ---
 import type { WorkProjectItem } from '../data/work';
-import { accents } from '../lib/accents';
+import Arrow from './Arrow.astro';
 
 interface Props {
   project: WorkProjectItem;
 }
 
 const { project } = Astro.props;
-const a = accents[project.accent];
-const Tag = project.href ? 'a' : 'div';
 ---
 
-<Tag
-  href={project.href}
-  target={project.href ? '_blank' : undefined}
-  rel={project.href ? 'noopener noreferrer' : undefined}
-  class:list={[
-    'group block rounded-xl border border-slate-200 dark:border-slate-800 p-5',
-    project.href && [a.hoverBorder, a.hoverBg],
-  ]}
+<article
+  id={project.slug}
+  class="relative isolate grid gap-x-10 gap-y-3 sm:grid-cols-[15rem_1fr] before:absolute before:-inset-x-3 before:-inset-y-4 before:-z-10 before:rounded-xl before:bg-indigo-50 dark:before:bg-indigo-950/50 before:opacity-0 target:before:animate-[target-fade_1.6s_var(--ease-out-strong)]"
 >
-  <h3 class:list={['font-semibold tracking-tight', project.href && a.titleHover]}>
-    {project.title}{project.href && ' ↗'}
-  </h3>
-  <p class="mt-1 text-sm text-slate-700 dark:text-slate-200">{project.pitch}</p>
-  <ul class="mt-3 space-y-1.5 text-sm text-slate-600 dark:text-slate-300 leading-relaxed list-disc pl-4">
+  <div>
+    <h3 class="text-lg font-semibold tracking-tight">{project.title}</h3>
+    <p class="mt-1 text-slate-600 dark:text-slate-400 leading-relaxed">{project.pitch}</p>
+    {project.href && (
+      <a
+        href={project.href}
+        class="group mt-3 inline-flex items-center gap-1 text-sm font-medium text-indigo-700 dark:text-indigo-400 hover:underline"
+      >
+        Live site
+        <Arrow direction="up-right" />
+      </a>
+    )}
+  </div>
+  <ul class="list-disc space-y-2 pl-5 text-slate-700 dark:text-slate-300 leading-relaxed marker:text-slate-400 dark:marker:text-slate-600">
     {project.highlights.map((h) => <li>{h}</li>)}
   </ul>
-</Tag>
+</article>

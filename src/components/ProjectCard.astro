@@ -1,30 +1,43 @@
 ---
 import type { ProjectItem } from '../data/projects';
-import { accents } from '../lib/accents';
+import { site } from '../data/site';
+import Arrow from './Arrow.astro';
 
 interface Props {
   project: ProjectItem;
 }
 
 const { project } = Astro.props;
-const a = accents[project.accent];
+
+// Say where the card goes: a repo, the GitHub profile, or a live site.
+const linkLabel =
+  project.href.replace(/\/$/, '') === site.socials.github
+    ? 'GitHub profile'
+    : project.href.startsWith('https://github.com/')
+      ? 'Code on GitHub'
+      : 'Live site';
 ---
 
 <a
+  id={project.slug}
   href={project.href}
-  class:list={[
-    'group block rounded-xl border border-slate-200 dark:border-slate-800 p-5',
-    a.hoverBorder,
-    a.hoverBg,
-  ]}
+  class="group flex flex-col rounded-xl bg-slate-50 dark:bg-slate-900/60 p-5 sm:p-6 hover:bg-slate-100 dark:hover:bg-slate-900 transition-colors"
 >
-  <h3 class:list={['font-semibold tracking-tight', a.titleHover]}>{project.title}</h3>
-  <div class="mt-2 flex flex-wrap gap-1.5">
-    {project.tags.map((tag) => (
-      <span class:list={['rounded-md px-2 py-0.5 text-[11px] font-medium', a.chip]}>
-        {tag}
-      </span>
-    ))}
-  </div>
-  <p class="mt-3 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">{project.summary}</p>
+  <h3 class="font-semibold tracking-tight group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors">
+    {project.title}
+  </h3>
+  {project.tags.length > 0 && (
+    <ul class="mt-2 flex flex-wrap gap-1.5">
+      {project.tags.map((tag) => (
+        <li class="rounded-md bg-white dark:bg-slate-800 px-2 py-0.5 text-[13px] font-medium text-slate-600 dark:text-slate-300">
+          {tag}
+        </li>
+      ))}
+    </ul>
+  )}
+  <p class="mt-3 text-slate-700 dark:text-slate-300 leading-relaxed">{project.summary}</p>
+  <span class="mt-auto inline-flex items-center gap-1 pt-4 text-sm font-medium text-indigo-700 dark:text-indigo-400">
+    {linkLabel}
+    <Arrow direction="up-right" />
+  </span>
 </a>

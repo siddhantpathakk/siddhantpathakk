@@ -1,12 +1,11 @@
-import type { Accent } from '../lib/accents';
-
 export interface WorkProjectItem {
   slug: string;
   title: string;
   pitch: string;
   highlights: string[];
   href?: string;
-  accent: Accent;
+  /** Headline figure for the home page's selected work; taken from the highlights. */
+  figure?: { value: string; label: string };
 }
 
 // Figures as of October 2026, rounded for public use.
@@ -20,7 +19,7 @@ export const workProjects: WorkProjectItem[] = [
       'Over 2,000 workflows saved for tasks like document extraction, reconciliation, invoice checks and FX rate tables. Most runs come from workflows staff reuse.',
       'Tests workflows during the build: 94% of test runs pass, and 95–99% of production runs succeed each month.',
     ],
-    accent: 'indigo',
+    figure: { value: '2,000+', label: 'workflows saved' },
   },
   {
     slug: 'commercial-insights-copilot',
@@ -31,7 +30,6 @@ export const workProjects: WorkProjectItem[] = [
       'Starts a daily market scan at each analyst’s login. It covers load factor, bookings, competitor data and news, and lands in about 6 minutes.',
       'Built for deep analysis, not lookups. It has run thousands of Python analyses and tens of thousands of data requests.',
     ],
-    accent: 'violet',
   },
   {
     slug: 'action-with-data',
@@ -42,7 +40,6 @@ export const workProjects: WorkProjectItem[] = [
       'Only 0.26% of code jobs hit a system error, and the median script runs in under a second.',
       'Next version: department-owned skills go live in 30 seconds with no deployment. Prompt caching cut coding-agent input cost by 70–87% in tests.',
     ],
-    accent: 'emerald',
   },
   {
     slug: 'agent360-smart-search',
@@ -54,7 +51,7 @@ export const workProjects: WorkProjectItem[] = [
       'About 13,000 searches, used every day since launch. It runs serverless with a 0.18% system error rate.',
     ],
     href: 'https://agent360.singaporeair.com/en_UK/us/index',
-    accent: 'sky',
+    figure: { value: '18 s', label: 'median cited answer, vs ~2 days' },
   },
   {
     slug: 'llm-gateway',
@@ -65,7 +62,7 @@ export const workProjects: WorkProjectItem[] = [
       'Teams get a key and a route in a median of 6 days. Active teams grew from 5 to over 50 between Nov 2025 and Mar 2026.',
       'Tenant-isolated across group companies, with per-call cost logging and caching. 99.55% of calls succeed, with a median response of 2.3 s.',
     ],
-    accent: 'amber',
+    figure: { value: '50+', label: 'teams on 40+ models' },
   },
   {
     slug: 'flight-recommender',
@@ -76,6 +73,6 @@ export const workProjects: WorkProjectItem[] = [
       'Served millions of searches a year on SIA’s website, app and chatbot, and turns off-topic queries into guided replies, not errors.',
       'Serverless by design: response time fell from about 6 to 4 seconds, and infrastructure cost fell about 90%.',
     ],
-    accent: 'rose',
+    figure: { value: '~90%', label: 'lower infrastructure cost' },
   },
 ];
