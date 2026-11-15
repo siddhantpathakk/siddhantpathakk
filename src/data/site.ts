@@ -8,7 +8,7 @@ export const site = {
   url: 'https://siddhantpathakk.com',
   initials: 'SP',
   tagline:
-    'Data Scientist at Singapore Airlines building AI agents, LLM gateways, and RAG systems.',
+    'Senior Data Scientist at Singapore Airlines building AI agents, LLM gateways, and RAG systems.',
   shortBio:
     'NTU Computer Science graduate researching graph neural networks for recommender systems, currently shipping production GenAI at Singapore Airlines.',
   resumeUrl: '/resume.pdf',

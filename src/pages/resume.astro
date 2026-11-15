@@ -2,7 +2,6 @@
 import Base from '../layouts/Base.astro';
 import PageHeader from '../components/PageHeader.astro';
 import Timeline from '../components/Timeline.astro';
-import Photo from '../components/Photo.astro';
 import AchievementList from '../components/AchievementList.astro';
 import SkillsGrid from '../components/SkillsGrid.astro';
 import Button from '../components/Button.astro';
@@ -23,7 +22,7 @@ const sectionHeading = 'text-xl font-semibold tracking-tight';
     lede="Where I’ve worked and studied, what I’ve won, and the tools I reach for. For the formatted PDF, use the buttons below."
   />
 
-  <div class="flex flex-wrap gap-3 pb-16">
+  <div class="flex flex-wrap items-center justify-center gap-x-6 gap-y-3 pb-10">
     <Button href={site.resumeUrl} download>
       <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
         <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/>
@@ -42,40 +41,30 @@ const sectionHeading = 'text-xl font-semibold tracking-tight';
     </Button>
   </div>
 
-  <section aria-labelledby="experience" class="pb-16">
+  <section aria-labelledby="experience" class="pb-10">
     <h2 id="experience" class={sectionHeading}>Experience</h2>
-    <div class="mt-8">
-      <Timeline items={experience} variant="work" />
+    <div class="mt-4">
+      <Timeline items={experience} />
     </div>
   </section>
 
-  <section aria-labelledby="education" class="pb-16">
+  <section aria-labelledby="education" class="pb-10">
     <h2 id="education" class={sectionHeading}>Education</h2>
-    <div class="mt-8 grid grid-cols-1 md:grid-cols-[1fr_15rem] gap-8 items-start">
-      <Timeline items={education} variant="education" />
-      <Photo
-        src={site.photos.graduation}
-        alt="Siddhant in his graduation gown at NTU, holding his mortarboard aloft"
-        width={240}
-        sizes="(min-width: 768px) 240px, 15rem"
-        aspect="portrait"
-        rounded="xl"
-        position="top"
-        class="w-60 max-w-full md:w-full"
-      />
+    <div class="mt-4">
+      <Timeline items={education} />
     </div>
   </section>
 
-  <section aria-labelledby="awards" class="pb-16">
+  <section aria-labelledby="awards" class="pb-10">
     <h2 id="awards" class={sectionHeading}>Awards</h2>
-    <div class="mt-8">
+    <div class="mt-4">
       <AchievementList items={awards} />
     </div>
   </section>
 
-  <section aria-labelledby="skills" class="pb-12">
+  <section aria-labelledby="skills" class="pb-4">
     <h2 id="skills" class={sectionHeading}>Skills</h2>
-    <div class="mt-8">
+    <div class="mt-4">
       <SkillsGrid groups={skills} />
     </div>
   </section>

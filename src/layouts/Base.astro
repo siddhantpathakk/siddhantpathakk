@@ -1,7 +1,7 @@
 ---
 import '../styles/global.css';
 import { getImage } from 'astro:assets';
-import interLatin from '@fontsource-variable/inter/files/inter-latin-opsz-normal.woff2?url';
+import fontLatin from '@fontsource-variable/schibsted-grotesk/files/schibsted-grotesk-latin-wght-normal.woff2?url';
 import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import { site } from '../data/site';
@@ -13,8 +13,8 @@ interface Props {
 }
 
 const {
-  title = 'Siddhant Pathak · Data Scientist',
-  description = 'Data Scientist at Singapore Airlines — GenAI infrastructure, LLM gateways, RAG, and graph neural network research.',
+  title = 'Siddhant Pathak · Senior Data Scientist',
+  description = 'Senior Data Scientist at Singapore Airlines — GenAI infrastructure, LLM gateways, RAG, and graph neural network research.',
   noindex = false,
 } = Astro.props;
 
@@ -29,9 +29,9 @@ const ogImageUrl = new URL(ogImage.src, Astro.site).href;
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content={description} />
-    <meta name="theme-color" content="#ffffff" />
+    <meta name="theme-color" content="#efefed" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="preload" href={interLatin} as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href={fontLatin} as="font" type="font/woff2" crossorigin />
     {noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
@@ -52,20 +52,20 @@ const ogImageUrl = new URL(ogImage.src, Astro.site).href;
         } catch {}
         const dark = saved === 'dark' || (!saved && window.matchMedia('(prefers-color-scheme: dark)').matches);
         document.documentElement.classList.toggle('dark', dark);
-        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#020618' : '#ffffff');
+        document.querySelector('meta[name="theme-color"]')?.setAttribute('content', dark ? '#0e0f11' : '#efefed');
       })();
     </script>
     <slot name="head" />
   </head>
-  <body class="bg-white text-slate-900 dark:bg-slate-950 dark:text-slate-100">
+  <body class="bg-ground text-ink">
     <a
       href="#main"
-      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-3 focus:z-50 focus:rounded-md focus:bg-white focus:px-3 focus:py-2 focus:text-sm focus:font-medium focus:shadow-lg dark:focus:bg-slate-900"
+      class="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-3 focus:z-50 focus:bg-field focus:px-3 focus:py-2 focus:text-sm focus:font-semibold focus:text-field-ink"
     >
       Skip to content
     </a>
     <Header />
-    <main id="main" class="mx-auto max-w-4xl px-4 sm:px-6">
+    <main id="main" class="mx-auto max-w-[44rem] px-5">
       <slot />
     </main>
     <Footer />

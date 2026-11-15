@@ -1,18 +1,24 @@
 ---
 import Base from '../layouts/Base.astro';
 import Photo from '../components/Photo.astro';
-import Arrow from '../components/Arrow.astro';
-import Button from '../components/Button.astro';
+import ProjectCard from '../components/ProjectCard.astro';
+import AchievementList from '../components/AchievementList.astro';
 import { site } from '../data/site';
+import { awards } from '../data/achievements';
+import { projects } from '../data/projects';
+import { education } from '../data/experience';
 import { workProjects } from '../data/work';
 
 const selected = workProjects.filter((p) => p.figure);
+const researchSlugs = ['tagon', 'speech-emotion-recognition', 'expected-goals', 'delphi'];
+const research = researchSlugs.map((slug) => projects.find((p) => p.slug === slug)!);
 
-const socials = [
-  { href: site.socials.github, label: 'GitHub', external: true },
-  { href: site.socials.linkedin, label: 'LinkedIn', external: true },
-  { href: site.socials.x, label: 'X', external: true },
-  { href: site.socials.email, label: 'Email', external: false },
+const links = [
+  { href: site.socials.email, label: 'Email' },
+  { href: site.resumeUrl, label: 'CV' },
+  { href: site.socials.github, label: 'GitHub' },
+  { href: site.socials.linkedin, label: 'LinkedIn' },
+  { href: site.socials.x, label: 'X' },
 ];
 
 const personLd = {
@@ -20,7 +26,7 @@ const personLd = {
   '@type': 'Person',
   name: site.name,
   url: site.url,
-  jobTitle: 'Data Scientist',
+  jobTitle: 'Senior Data Scientist',
   worksFor: { '@type': 'Organization', name: 'Singapore Airlines' },
   alumniOf: { '@type': 'CollegeOrUniversity', name: 'Nanyang Technological University' },
   email: site.email,
@@ -31,87 +37,114 @@ const personLd = {
 <Base>
   <script slot="head" type="application/ld+json" set:html={JSON.stringify(personLd)} />
 
-  <section class="pt-12 sm:pt-20 pb-12 grid gap-8 sm:grid-cols-[1fr_auto] sm:items-start sm:gap-12">
-    <div class="min-w-0 max-w-2xl">
-      <h1 class="text-[clamp(2.25rem,13vw,3rem)] sm:text-7xl font-bold tracking-display leading-[1.02]">{site.name}</h1>
-      <p class="mt-5 text-xl sm:text-2xl leading-snug text-slate-700 dark:text-slate-300">
-        Data Scientist building production GenAI at
-        <span class="text-slate-900 dark:text-white font-medium">Singapore Airlines</span>.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-3">
-        <Button href="/projects/">View projects</Button>
-        <Button href="/resume/" variant="secondary">Resume</Button>
-      </div>
-    </div>
+  <section class="pb-12 pt-8 text-center">
     <Photo
       src={site.photos.avatar}
       alt={`Portrait of ${site.name}`}
-      width={176}
-      sizes="(min-width: 640px) 176px, 112px"
+      width={256}
+      sizes="128px"
       aspect="square"
-      rounded="2xl"
       priority
-      class="order-first h-28 w-28 sm:order-none sm:h-44 sm:w-44"
+      class="mx-auto h-32 w-32 rounded-full"
     />
+    <h1 class="mt-6 text-4xl font-bold tracking-tight">{site.name}</h1>
+    <p class="mt-2 text-lg">Senior Data Scientist at Singapore Airlines</p>
+    <p class="text-soft">B.Eng. Computer Science (Honours, Distinction), NTU, CGPA 4.27/5.00</p>
+    <ul class="mt-5 flex flex-wrap justify-center gap-x-5 gap-y-1 text-[15px]">
+      {links.map((l) => <li><a href={l.href} class="link inline-block py-1">{l.label}</a></li>)}
+    </ul>
   </section>
 
-  <section class="pb-16">
-    <div class="max-w-2xl space-y-5 text-base sm:text-lg text-slate-700 dark:text-slate-300 leading-relaxed">
+  <section aria-labelledby="about" class="pb-12">
+    <h2 id="about" class="mb-3 text-xl font-semibold tracking-tight">About</h2>
+    <div class="space-y-4">
       <p>
-        I build Agent Builder, which turns a plain-English request into a tested AI workflow; a cited RAG search
-        engine for B2B travel agents; data-analysis copilots; and the enterprise LLM gateway that routes traffic to
-        40+ models across 4 providers.
+        I build the GenAI tools Singapore Airlines staff use every day: Agent Builder, a cited search engine for
+        travel agents, data-analysis copilots, and the LLM gateway behind 40+ models.
       </p>
       <p>
-        I graduated from <span class="text-slate-900 dark:text-white font-medium">Nanyang Technological University</span>
-        with a B.Eng. in Computer Science (Honours, Distinction). My research
-        sits at the intersection of graph neural networks, sequential recommendation, and applied AI.
+        I graduated from Nanyang Technological University with a B.Eng. in Computer Science (Honours, Distinction).
+        My research sits at the intersection of graph neural networks, sequential recommendation, and applied AI.
       </p>
       <p>
-        Outside work I’m drawn to the messy, useful edges of ML: on-device inference, retrieval systems, and
-        anything that pushes models out of notebooks and into production.
+        Outside work I’m drawn to the messy, useful edges of ML: on-device inference, retrieval systems, and anything
+        that pushes models out of notebooks and into production.
       </p>
     </div>
-
-    <ul class="mt-8 flex flex-wrap gap-x-5 gap-y-2 text-sm text-slate-600 dark:text-slate-400">
-      {socials.map((s) => (
-        <li>
-          <a href={s.href} class="group inline-flex items-center gap-1 py-1 hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors">
-            {s.label}
-            {s.external && <Arrow direction="up-right" class="h-3 w-3" />}
-          </a>
-        </li>
-      ))}
-    </ul>
   </section>
 
-  <section aria-labelledby="selected-work" class="pb-8">
+  <section aria-labelledby="selected-work" class="pb-12">
     <h2 id="selected-work" class="text-xl font-semibold tracking-tight">Selected work at Singapore Airlines</h2>
-    <ul class="mt-4 -mx-3">
+    <ul class="mt-2">
       {selected.map((p) => (
         <li>
-          <a
-            href={`/projects/#${p.slug}`}
-            class="group grid grid-cols-1 gap-y-2 rounded-lg px-3 py-4 hover:bg-slate-50 dark:hover:bg-slate-900 transition-colors sm:grid-cols-[minmax(0,1fr)_auto] sm:items-baseline sm:gap-x-6"
-          >
+          <a href={`/projects/#${p.slug}`} class="group grid gap-x-6 gap-y-1 py-3 sm:grid-cols-[1fr_auto] sm:items-baseline">
             <span>
-              <span class="block font-semibold group-hover:text-indigo-700 dark:group-hover:text-indigo-400 transition-colors">{p.title}</span>
-              <span class="mt-0.5 block text-slate-600 dark:text-slate-400">{p.pitch}</span>
+              <span class="font-semibold group-hover:underline">{p.title}</span>
+              <span class="block text-soft">{p.pitch}</span>
             </span>
-            <span class="flex flex-wrap items-baseline gap-x-2 sm:block sm:max-w-60 sm:text-right">
-              <span class="block text-2xl sm:text-3xl font-semibold tracking-display tabular-nums">{p.figure!.value}</span>
-              <span class="block text-sm text-slate-600 dark:text-slate-400">{p.figure!.label}</span>
+            <span class="text-[15px] sm:text-right">
+              <span class="inline-block text-right font-semibold tabular-nums" style={`min-width:${p.figure!.value.length}ch`} data-count>{p.figure!.value}</span>
+              <span class="text-soft"> {p.figure!.label}</span>
             </span>
           </a>
         </li>
       ))}
     </ul>
-    <a
-      href="/projects/"
-      class="group mt-4 inline-flex items-center gap-1.5 text-sm font-medium text-indigo-700 dark:text-indigo-400 hover:underline"
-    >
-      All projects
-      <Arrow />
-    </a>
+    <a href="/projects/" class="link mt-2 inline-block">All projects</a>
   </section>
+
+  <section aria-labelledby="research" class="pb-12">
+    <h2 id="research" class="text-xl font-semibold tracking-tight">Research</h2>
+    <div class="divide-y-0">
+      {research.map((p) => <ProjectCard project={p} />)}
+    </div>
+  </section>
+
+  <section aria-labelledby="education" class="pb-12">
+    <h2 id="education" class="mb-3 text-xl font-semibold tracking-tight">Education</h2>
+    {education.map((e) => (
+      <div>
+        <p class="text-[15px] text-soft">{e.period}</p>
+        <p class="font-semibold">{e.degree}, {e.institution}</p>
+        {e.detail && <p>{e.detail}</p>}
+      </div>
+    ))}
+  </section>
+
+  <section aria-labelledby="awards" class="pb-4">
+    <h2 id="awards" class="mb-4 text-xl font-semibold tracking-tight">Awards</h2>
+    <AchievementList items={awards} />
+  </section>
+
+<script is:inline>
+  (() => {
+    const els = [...document.querySelectorAll('[data-count]')];
+    const section = document.querySelector('[aria-labelledby="selected-work"]');
+    if (!els.length || !section || matchMedia('(prefers-reduced-motion: reduce)').matches || !('IntersectionObserver' in window)) return;
+    const parts = els.map((el) => {
+      const final = el.textContent;
+      const m = final.match(/^(\D*)([\d,]+(?:\.\d+)?)(.*)$/);
+      return m && { el, final, pre: m[1], suf: m[3], target: parseFloat(m[2].replace(/,/g, '')), dec: (m[2].split('.')[1] || '').length };
+    }).filter(Boolean);
+    const show = (c, v) => { c.el.textContent = c.pre + v.toLocaleString('en-US', { minimumFractionDigits: c.dec, maximumFractionDigits: c.dec }) + c.suf; };
+    parts.forEach((c) => show(c, 0)); // start at zero; the section is below the first screen
+    const DURATION = 3600, STAGGER = 400;
+    const run = () => parts.forEach((c, i) => {
+      const start = performance.now() + i * STAGGER;
+      const tick = (now) => {
+        const t = Math.min(1, Math.max(0, (now - start) / DURATION));
+        show(c, c.target * (1 - Math.pow(1 - t, 3)));
+        if (t < 1) requestAnimationFrame(tick);
+        else c.el.textContent = c.final;
+      };
+      requestAnimationFrame(tick);
+    });
+    // Start once most of the section is on screen, with the bottom fifth of the window ignored.
+    const io = new IntersectionObserver((es) => {
+      if (es[0].isIntersecting) { run(); io.disconnect(); }
+    }, { threshold: 0.6, rootMargin: '0px 0px -15% 0px' });
+    io.observe(section);
+  })();
+</script>
 </Base>

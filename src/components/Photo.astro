@@ -9,7 +9,6 @@ interface Props {
   width: number;
   sizes: string;
   aspect?: 'square' | 'portrait' | 'landscape';
-  rounded?: 'lg' | 'xl' | '2xl';
   position?: string;
   priority?: boolean;
   class?: string;
@@ -21,7 +20,7 @@ const {
   width,
   sizes,
   aspect = 'landscape',
-  rounded = 'xl',
+  
   position = 'center',
   priority = false,
   class: className = '',
@@ -35,14 +34,9 @@ const aspectClass = {
 
 const heightRatio = { square: 1, portrait: 4 / 3, landscape: 3 / 4 }[aspect];
 
-const roundedClass = {
-  lg: 'rounded-lg',
-  xl: 'rounded-xl',
-  '2xl': 'rounded-2xl',
-}[rounded];
 ---
 
-<div class:list={['overflow-hidden bg-slate-100 dark:bg-slate-900', aspectClass, roundedClass, className]}>
+<div class:list={['overflow-hidden bg-surface', aspectClass, className]}>
   <Image
     src={src}
     alt={alt}

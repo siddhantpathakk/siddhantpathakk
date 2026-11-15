@@ -31,7 +31,7 @@ export const projects: ProjectItem[] = [
     title: 'TAGON — Graph Neural Networks for Sequential Recommendation',
     tags: ['GNN', 'Temporal Attention', 'PyTorch'],
     summary:
-      'Temporal Attention Graph-Optimised Network modelling dynamic user interactions, improving relevance and timeliness by 20% across five real-world datasets and outperforming SOTA baselines in precision, recall, and user satisfaction.',
+      'Designed a temporal graph-attention sequential recommender that learns from the time between interactions, as a final-year project graded A and published in NTU’s research repository. Beat 6 baselines, including LightGCN, GRU4Rec and Caser, on all 5 datasets (4 Amazon categories and MovieLens-100K) by up to 46% on Recall@20, and ran 5 ablations to isolate each design choice.',
     href: 'https://github.com/siddhantpathakk/tagon',
   },
   {
@@ -55,8 +55,25 @@ export const projects: ProjectItem[] = [
     title: 'Expected Goals Model — Singapore Football',
     tags: ['Sports Analytics', 'Ensembles', 'NN'],
     summary:
-      'Spatio-temporal xG framework combining KNN, Random Forest, Logistic Regression, and neural networks with ensemble methods. Achieved 99.58% accuracy on a 1M-point English Premier League dataset. NTU President Research Scholar.',
+      'Built expected-goals models from 244 Premier League matches in URECA-funded research, comparing 6 model families across 5 levels of event data to show what a low-resource league must collect. NTU President Undergraduate Research Scholar.',
     href: 'https://github.com/siddhantpathakk/URECA-SG_Football',
+  },
+  {
+    slug: 'openclaw-ec2',
+    title: 'openclaw-ec2 — One AI agent server per git branch',
+    tags: ['AWS CloudFormation', 'Ansible', 'GitHub Actions OIDC'],
+    summary:
+      'Solo-built deployment kit that turns any git branch into its own AI agent server on AWS, and deleting the branch tears it all down. Hosts are configured with Ansible over SSM with no SSH and no inbound ports, deploys use keyless GitHub OIDC, and S3 backups restore onto a fresh instance.',
+    href: 'https://github.com/siddhantpathakk/openclaw-ec2',
+    year: 2026,
+  },
+  {
+    slug: 'frequentmining',
+    title: 'FrequentMining — Frequent itemsets on PySpark',
+    tags: ['PySpark', 'SON algorithm', 'Big data'],
+    summary:
+      'Implemented the SON two-pass frequent-itemset algorithm on PySpark in a team of 3, mining MovieLens-20M (10M transactions) and a 5.48 GB Yelp dataset that Apriori could not fit in memory.',
+    href: 'https://github.com/siddhantpathakk/FrequentMining',
   },
   {
     slug: 'delphi',
