@@ -11,6 +11,10 @@ export interface Award {
 
 export const awards: Award[] = [
   {
+    title: 'Multiple Staff Awards from the SVP of IT, Singapore Airlines',
+    detail: '',
+  },
+  {
     title: 'Third Place — Deep Learning Week Hackathon 2024',
     detail: 'MLDA@EEE Club, NTU. Icarus AI — explainable GenAI job recommendations.',
     year: 2024,

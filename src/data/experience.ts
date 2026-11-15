@@ -18,7 +18,7 @@ export interface EducationItem {
 export const experience: ExperienceItem[] = [
   {
     period: 'Aug 2024 – Present',
-    role: 'Data Scientist',
+    role: 'Senior Data Scientist (Data Scientist until Jun 2026)',
     company: 'Singapore Airlines',
     companyUrl: 'https://www.singaporeair.com',
     current: true,
@@ -26,7 +26,7 @@ export const experience: ExperienceItem[] = [
       'Lead engineer on Agent Builder, which turns plain-English requests into tested AI workflows.',
       'Built and run Agent360 Smart Search, a cited RAG answer engine for B2B travel agents.',
       'Built the next version and skills platform of Action with Data, and core parts of the Commercial Insights Copilot.',
-      'Architected the current enterprise LLM gateway (40+ models, 4 providers, 50+ teams).',
+      'Architected the current enterprise LLM gateway (40+ models, 4 providers, 50+ teams): NGINX reverse proxy behind a WAF, Ansible-managed tenant ACLs, per-tenant keys, response caching and per-call cost logging.',
       'Re-architected the Flight Recommender, cutting infra cost ~90% and latency by a third.',
       'Led open-source LLM deployments on cloud GPUs and on-prem Mac Studio clusters.',
     ],
@@ -36,7 +36,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     period: 'Jan 2024 – Apr 2024',
-    role: 'Data Science & GenAI Engineer (Intern)',
+    role: 'Data Science and Generative AI Engineer Intern',
     company: 'Asurion',
     companyUrl: 'https://www.asurion.com',
     highlights: [
@@ -46,7 +46,7 @@ export const experience: ExperienceItem[] = [
   },
   {
     period: 'May 2023 – Aug 2023',
-    role: 'Software Development Engineer (Intern)',
+    role: 'Software Developer Intern',
     company: 'Glance, InMobi',
     companyUrl: 'https://glance.com',
     highlights: [
@@ -55,8 +55,8 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
-    period: 'Aug 2022 – Dec 2022',
-    role: 'Data Analytics Consultant (Apprentice)',
+    period: 'Aug 2022 – Jan 2023',
+    role: 'Data Analyst (Apprenticeship)',
     company: 'MSD',
     companyUrl: 'https://www.msd.com',
     highlights: [
@@ -65,8 +65,8 @@ export const experience: ExperienceItem[] = [
     ],
   },
   {
-    period: 'May 2022 – Aug 2022',
-    role: 'AI Algorithm Engineer (Intern)',
+    period: 'May 2022 – Dec 2022',
+    role: 'Artificial Intelligence Developer Intern',
     company: 'Panasonic R&D Center',
     companyUrl: 'https://www.panasonic.com/sg/corporate/profile/panasonic-r-d-center-singapore.html',
     highlights: [
@@ -78,9 +78,9 @@ export const experience: ExperienceItem[] = [
 
 export const education: EducationItem[] = [
   {
-    period: 'Aug 2020 – Jun 2024',
-    degree: 'B.Eng. Computer Science (Honours, Distinction)',
+    period: 'Aug 2020 – May 2024',
+    degree: 'B.Eng. Computer Science (Data Science and AI), Honours with Distinction',
     institution: 'Nanyang Technological University',
-    detail: 'Specialised in Data Science and Artificial Intelligence.',
+    detail: 'CGPA 4.27/5.00. Coursework: Machine Learning; Neural Networks and Deep Learning; Data Analytics and Mining; Time Series Analysis; Stochastic Processes; Financial Mathematics; Algorithm Design and Analysis.',
   },
 ];

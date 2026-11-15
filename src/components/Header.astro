@@ -1,43 +1,28 @@
 ---
 import ThemeToggle from './ThemeToggle.astro';
-import { site } from '../data/site';
 
 const links = [
+  { href: '/', label: 'Home' },
   { href: '/projects/', label: 'Projects' },
   { href: '/resume/', label: 'Resume' },
 ];
 
 const strip = (path: string) => path.replace(/\/$/, '') || '/';
 const normalized = strip(Astro.url.pathname);
-const isActive = (href: string) => normalized === strip(href) || normalized.startsWith(href);
+const isActive = (href: string) => normalized === strip(href);
 ---
 
-<header
-  class="site-header sticky top-0 z-40 [view-transition-name:site-header]"
->
-  <nav aria-label="Main" class="mx-auto max-w-4xl px-4 sm:px-6 min-h-14 flex flex-wrap items-center justify-between gap-x-2">
-    <a
-      href="/"
-      aria-current={normalized === '/' ? 'page' : undefined}
-      class="inline-flex h-11 items-center whitespace-nowrap font-semibold tracking-tight text-[13px] min-[360px]:text-sm sm:text-base hover:text-indigo-700 dark:hover:text-indigo-400 transition-colors"
-    >
-      {site.name}
-    </a>
-    <div class="flex flex-wrap items-center">
-      <ul class="flex items-center">
-        {links.map((l) => (
-          <li>
-            <a
-              href={l.href}
-              aria-current={isActive(l.href) ? 'page' : undefined}
-              class="inline-flex h-11 items-center px-1.5 min-[360px]:px-2.5 sm:px-3 text-sm font-medium text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition-colors aria-[current=page]:text-slate-900 dark:aria-[current=page]:text-white aria-[current=page]:underline aria-[current=page]:decoration-indigo-500 aria-[current=page]:decoration-2 aria-[current=page]:underline-offset-[6px]"
-            >
-              {l.label}
-            </a>
-          </li>
-        ))}
-      </ul>
-      <ThemeToggle />
-    </div>
+<header class="bg-ground [view-transition-name:site-header]">
+  <nav aria-label="Main" class="mx-auto flex max-w-[44rem] items-center justify-center gap-1 px-5 pt-3 text-[15px]">
+    {links.map((l) => (
+      <a
+        href={l.href}
+        aria-current={isActive(l.href) ? 'page' : undefined}
+        class="inline-flex h-11 items-center px-3 text-soft hover:text-ink aria-[current=page]:font-semibold aria-[current=page]:text-ink"
+      >
+        {l.label}
+      </a>
+    ))}
+    <ThemeToggle />
   </nav>
 </header>

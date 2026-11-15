@@ -11,23 +11,20 @@ const { items } = Astro.props;
 
 <ul class="space-y-8">
   {items.map((item) => (
-    <li class="grid gap-4 sm:grid-cols-[1fr_14rem] sm:gap-8">
+    <li class="grid gap-4 sm:grid-cols-[1fr_9rem] sm:items-start">
       <div>
-        {item.year && (
-          <p class="text-sm font-medium text-slate-500 dark:text-slate-400 tabular-nums">{item.year}</p>
-        )}
-        <p class="mt-0.5 font-semibold">{item.title}</p>
-        <p class="mt-1 max-w-2xl text-slate-700 dark:text-slate-300 leading-relaxed">{item.detail}</p>
+        {item.year && <p class="text-[15px] text-soft">{item.year}</p>}
+        <p class="font-semibold">{item.title}</p>
+        {item.detail && <p class="mt-1">{item.detail}</p>}
       </div>
       {item.image && (
         <Photo
           src={item.image.src}
           alt={item.image.alt}
-          width={384}
-          sizes="(min-width: 640px) 224px, min(calc(100vw - 2rem), 24rem)"
+          width={288}
+          sizes="(min-width: 640px) 9rem, 100vw"
           aspect="landscape"
-          rounded="lg"
-          class="max-w-sm sm:max-w-none"
+          class="max-w-xs sm:max-w-none"
         />
       )}
     </li>
